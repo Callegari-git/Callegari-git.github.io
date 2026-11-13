@@ -4,11 +4,10 @@ slug: physical-loop
 summary: An AI design agent that goes from a text request to a printable object with a circuit inside — and a safety and verification layer that keeps it from touching hardware unchecked.
 category: Agentic AI · Hardware-in-the-loop
 date: 2026-09-01
-role: AI Engineer, UC Berkeley MEng industry capstone with Celedon
+role: AI Engineer, UC Berkeley MEng industry capstone with Celedon (DaVinci platform)
 status: ongoing
 team: Team of 4 · I led object design, circuit tools and printer safety
-confirm:
-  - "[CONFIRM: NDA scope — the capstone listing requires an NDA; check what beyond the partner's name can be public (details, repo, slides)]"
+advisor: Prof. Kosa Goucher-Lambert
 featured: true
 order: 1
 stack:
@@ -23,17 +22,20 @@ stack:
   - GitHub Actions
   - Claude Code
 metrics:
-  - value: '~12 min'
-    label: 'text request to a checked, printable object with a circuit inside (~$6 model cost) [CONFIRM: live run]'
-  - value: '16/16'
-    label: wiring and worst-case checks passed on the desk-lamp circuit
+  - value: '11.5 min'
+    label: text request to a checked, printable object with a circuit inside — $6.05 of model cost
+  - value: '4'
+    label: agent tool calls refused by the guardrails during the live desk-lamp run
+  - value: '~13 min'
+    label: first agent-driven print on a real CR-10 V2 (supervised mode)
   - value: '≤ 0.007'
     label: validation NRMSE vs 0.02 threshold (simulated bench)
   - value: '299.9 s'
     label: dead-man timer kill, measured on a real CR-10 V2
 links:
-  repo: '[CONFIRM: public or private?]'
-  slides: '[CONFIRM: OK to link?]'
+  project: https://celedon.solutions/
+  slides: https://capstone-slides-lake.vercel.app/
+  repo: '[CONFIRM: is the repo public? Linked only once it is]'
 ---
 
 ## Problem
@@ -77,13 +79,20 @@ Rule: MCP never talks to the bench; the hardware layer never talks to the agent.
 
 - Reference loop on a simulated RC bench: model corrected from τ = 0.5 s to 1.0006 s (true value 1.0 s); validation
   NRMSE 0.0067 and 0.0041 vs a 0.02 threshold; verdict recomputed independently.
-- Full object run ("a desk lamp"): **~12 minutes, ~$6 of model cost**, with per-stage cost caps and tool-call limits.
-  The circuit passes all 16 wiring and worst-case checks; 4 printed parts, wires routed, human approval, assembly
-  guide written. [CONFIRM: link the live run record that gives 12 min / $6]
+- Live object run ("a desk lamp", 2026-10-28, Claude Opus 5.5): **11.5 minutes, $6.05 of model cost** against a $35
+  run cap, with per-stage caps ($1 / $3 / $10 / $20). All 4 parts passed their geometry check on the first build;
+  `check_housing` passes (assembly fit, wire lengths, circuit re-check); **4 agent tool calls refused** by the
+  guardrails in the mechanics stage. Record: `artifacts/object-runs/20261028-192434-a-desk-lamp/report.md`.
+- **First agent-driven print on the real CR-10 V2** (2026-10-28, supervised mode): part printed in ~13 min, one
+  approval correctly declined on a mistyped confirmation code, no gate refusal, hash-chained audit log verified
+  intact. Record: `docs/runs/2026-10-28-first-agent-print.md`. [CONFIRM: measure the two 4.0 mm holes with
+  calipers — the record still says TODO]
 - Agent-written CadQuery code runs in a sandboxed process with static checks and timeouts; specs frozen by SHA-256.
 - 1,100+ automated tests across the repo (team), CI on every pull request.
 
 ## Limits
 
-The experiment bench is simulated. The live-LLM end-to-end run and bench measurement of a built object are next
-steps.
+- The model-calibration loop runs on a simulated RC bench.
+- The object with a circuit has been designed and checked, but not yet built and measured at the bench (next
+  milestone).
+- The first real print was a simple test plate.

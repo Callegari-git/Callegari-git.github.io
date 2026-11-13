@@ -2,12 +2,11 @@
 title: 'Scriptus: one API call to create a full charging site'
 slug: scriptus
 summary: FastAPI microservice on AWS, integrated with the platform's production API, that provisions a complete charging site (locations, stations, charge points, roaming partners) from a single Excel input, orchestrating dependent API calls with Temporal workflows.
-category: Backend · API orchestration
+category: Backend · Production service
 date: 2026-03-01
 end: 2026-08-31
 role: Software Automation Engineer Intern, TotalEnergies Charging Services
-status: prototype
-statusConfirm: '[CONFIRM: in production (LinkedIn) or prototype (internship report)?]'
+status: production
 featured: true
 order: 3
 stack:
@@ -41,10 +40,10 @@ Excel input → Pydantic validation (whole payload) → Temporal workflow
             → response check after each step → stop at the failing step with a clear error
 ```
 
-Deployment: [CONFIRM: AWS service (ECS/Fargate, Lambda + API Gateway, EC2…), containerized?, CI/CD, auth, secrets,
+Deployment: [CONFIRM details: AWS service (ECS/Fargate, Lambda + API Gateway, EC2…), containerized?, CI/CD, auth, secrets,
 logging/monitoring, environments (staging/prod)]
 
 ## Results
 
-[CONFIRM: sites created since go-live, time per site before → after, failure/retry rate, latency, users (which teams
+[CONFIRM numbers: sites created since go-live, time per site before → after, failure/retry rate, latency, users (which teams
 call it), uptime]

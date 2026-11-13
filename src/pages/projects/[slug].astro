@@ -29,16 +29,17 @@ interface Props {
 }
 
 const { project, prev, next } = Astro.props;
-const { title, summary, category, date, end, role, team, confirm, metrics, stack, links } = project.data;
+const { title, summary, category, date, end, role, team, advisor, confirm, metrics, stack, links } = project.data;
 const { Content } = await render(project);
 
 const facts = [
   { label: 'Role', value: role },
   { label: 'Period', value: formatPeriod(date, end) },
   ...(team ? [{ label: 'Team', value: team }] : []),
+  ...(advisor ? [{ label: 'Advisor', value: advisor }] : []),
 ];
 
-const linkLabels = { repo: 'Repository', demo: 'Live demo', slides: 'Slides' } as const;
+const linkLabels = { project: 'Project site', slides: 'Slides', demo: 'Live demo', repo: 'Repository' } as const;
 const linkList = (Object.keys(linkLabels) as (keyof typeof linkLabels)[])
   .filter((key) => links[key])
   .map((key) => ({ label: linkLabels[key], value: links[key] as string }));

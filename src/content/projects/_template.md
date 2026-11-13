@@ -12,6 +12,7 @@ status: production # production | prototype | ongoing
 # statusConfirm: '[CONFIRM: …]' # shown instead of the status badge
 # team: Team of N · what I led # team projects only; also add a "My part" section
 # confirm: ['[CONFIRM: …]'] # notes shown under the header
+# advisor: Prof. Name # school projects
 featured: false # true = card in "Featured projects"
 order: 99 # sort order (home + previous/next)
 # page: false # card only, no case-study page
@@ -20,7 +21,7 @@ metrics: # the first one is the card's highlight
   - value: '123'
     label: what the number measures
   # estimated: true # shows an "est." tag
-links: {} # repo / demo / slides: a URL or '[CONFIRM: …]'
+links: {} # project / slides / demo / repo: a URL or '[CONFIRM: …]'
 ---
 
 ## Problem

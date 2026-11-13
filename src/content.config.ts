@@ -37,6 +37,8 @@ const projects = defineCollection({
     statusConfirm: z.string().startsWith('[CONFIRM').optional(),
     /** Set for team projects, e.g. "Team of 4 · I led …". */
     team: z.string().optional(),
+    /** Academic advisor, for school projects. */
+    advisor: z.string().optional(),
     /** Page-level "[CONFIRM …]" notes shown under the case-study header. */
     confirm: z.array(z.string()).default([]),
     featured: z.boolean().default(false),
@@ -52,6 +54,7 @@ const projects = defineCollection({
         repo: linkOrConfirm.optional(),
         demo: linkOrConfirm.optional(),
         slides: linkOrConfirm.optional(),
+        project: linkOrConfirm.optional(),
       })
       .default({}),
   }),

@@ -6,8 +6,7 @@ category: Fleet automation
 date: 2026-03-01
 end: 2026-08-31
 role: Software Automation Engineer Intern, TotalEnergies Charging Services
-status: prototype
-statusConfirm: '[CONFIRM: in production (LinkedIn) or prototype (internship report)?]'
+status: production
 featured: false
 order: 5
 # Card only (no case-study page) until there is more detail.

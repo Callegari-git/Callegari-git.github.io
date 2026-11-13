@@ -6,8 +6,7 @@ category: Data engineering
 date: 2026-03-01
 end: 2026-08-31
 role: Software Automation Engineer Intern, TotalEnergies Charging Services
-status: prototype
-statusConfirm: '[CONFIRM: status — production, prototype or ongoing?]'
+status: production
 featured: false
 order: 4
 stack:

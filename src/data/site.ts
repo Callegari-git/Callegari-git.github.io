@@ -33,7 +33,7 @@ export const person = {
   headline: 'An agent should never grade its own work. I build the guardrails that let AI act on real systems.',
   subline: 'AI engineer working where agents meet production: MCP tools, hardware, and the checks around them.',
   availability: 'Open to full-time roles in 2027 (MEng ends May 2027) · on-site, hybrid, remote.',
-  email: '[CONFIRM: email]',
+  email: 'sebastien_callegari@berkeley.edu',
   cvHref: '/cv.pdf',
 } as const;
 
@@ -41,14 +41,14 @@ export const isPlaceholder = (href: string) => href.startsWith('[CONFIRM');
 
 export const links: ProfileLink[] = [
   { label: 'Email', href: isPlaceholder(person.email) ? person.email : `mailto:${person.email}` },
-  { label: 'GitHub', href: '[CONFIRM: GitHub handle]' },
+  { label: 'GitHub', href: 'https://github.com/Callegari-git' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sebastiencallegari/' },
 ];
 
 export const metrics: Metric[] = [
   {
-    value: '~12 min',
-    label: 'text request to a checked, printable object with a circuit inside (~$6 model cost) [CONFIRM: live run]',
+    value: '11.5 min',
+    label: 'text request to a checked, printable object with a circuit inside — $6.05 of model cost',
   },
   {
     value: '15,000+',

@@ -1,0 +1,21 @@
+---
+/** A metric number, with an "est." tag when the value is an estimate. */
+interface Props {
+  value: string;
+  estimated?: boolean | undefined;
+  class?: string;
+}
+
+const { value, estimated = false, class: className } = Astro.props;
+---
+
+<span class:list={['tabular-nums', className]}>
+  {value}
+  {
+    estimated && (
+      <span class="ml-1 align-super font-mono text-label font-medium text-muted">
+        est.<span class="sr-only"> (estimate)</span>
+      </span>
+    )
+  }
+</span>

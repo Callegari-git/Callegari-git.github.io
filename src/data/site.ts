@@ -1,19 +1,21 @@
 /**
- * Home page content — PHASE 1 PLACEHOLDERS.
- *
- * Every value in this file is a placeholder. Brackets ([…]) and X-digits
- * ("XX%", "$X.XM") are intentional, so nothing fake can ship by mistake.
- * Featured projects move to Content Collections in phase 2.
+ * Home page content. Source: docs/content-brief.md (the only content source).
+ * "[CONFIRM …]" values are intentional, visible placeholders: they are shown as
+ * plain text (never as links) until confirmed.
+ * Projects live in src/content/projects (Content Collections).
  */
-
-export interface Link {
-  label: string;
-  href: string;
-}
 
 export interface Metric {
   value: string;
   label: string;
+  /** true when the value itself is an estimate; shows an "est." tag. */
+  estimated?: boolean;
+}
+
+export interface ProfileLink {
+  label: string;
+  /** A URL / mailto, or a "[CONFIRM …]" placeholder rendered as text. */
+  href: string;
 }
 
 export interface ExpertiseBlock {
@@ -21,85 +23,61 @@ export interface ExpertiseBlock {
   body: string;
 }
 
-export interface FeaturedProject {
-  slug: string;
-  category: string;
-  title: string;
-  summary: string;
-  metric: Metric;
-  stack: string[];
-}
-
-// PLACEHOLDER — identity
 export const person = {
-  name: '[Your Name]',
-  kicker: 'AI Engineer · San Francisco Bay Area',
-  role: '[Senior AI Engineer]',
-  company: '[Company]',
-  location: '[City, CA]',
-  headline: '[Your point of view on AI engineering — one or two lines]',
-  email: 'hello@example.com',
+  name: 'Sébastien Callegari',
+  roleLine: 'Software / AI Engineer · LLM agents, MCP & tool use',
+  role: 'AI Engineer, Industry Capstone',
+  company: 'UC Berkeley × Celedon',
+  location: 'San Francisco Bay Area',
+  openTo: 'Full-time roles in 2027 · on-site, hybrid, remote',
+  headline: 'An agent should never grade its own work. I build the guardrails that let AI act on real systems.',
+  subline: 'AI engineer working where agents meet production: MCP tools, hardware, and the checks around them.',
+  availability: 'Open to full-time roles in 2027 (MEng ends May 2027) · on-site, hybrid, remote.',
+  email: '[CONFIRM: email]',
   cvHref: '/cv.pdf',
 } as const;
 
-// PLACEHOLDER — profile links
-export const links: Link[] = [
-  { label: 'Email', href: `mailto:${person.email}` },
-  { label: 'GitHub', href: 'https://github.com/your-handle' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/your-handle' },
+export const isPlaceholder = (href: string) => href.startsWith('[CONFIRM');
+
+export const links: ProfileLink[] = [
+  { label: 'Email', href: isPlaceholder(person.email) ? person.email : `mailto:${person.email}` },
+  { label: 'GitHub', href: '[CONFIRM: GitHub handle]' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sebastiencallegari/' },
 ];
 
-// PLACEHOLDER — booking link for the contact section
-export const bookingHref = 'https://cal.com/your-handle';
-
-// PLACEHOLDER — key metrics (3–4 numbers, each with a short source label)
 export const metrics: Metric[] = [
-  { value: '−XX%', label: 'p95 latency · [system]' },
-  { value: '$X.XM/yr', label: 'inference cost saved' },
-  { value: 'XXM', label: 'requests / day served' },
-  { value: 'X', label: 'peer-reviewed papers' },
+  {
+    value: '~12 min',
+    label: 'text request to a checked, printable object with a circuit inside (~$6 model cost) [CONFIRM: live run]',
+  },
+  {
+    value: '15,000+',
+    label: 'config changes pushed to ~4,000 EV chargers in < 1 month (vs ~4 months manual, est.)',
+  },
+  {
+    value: '10,000',
+    label: 'chargers migrated across 5 operators, scripts built in 2 weeks',
+  },
+  {
+    value: '600,000+',
+    label: 'support tickets unarchived and converted, external vendor avoided',
+  },
 ];
 
-// PLACEHOLDER — expertise (3 blocks, 2–3 lines each)
+/** Shown wherever an estimate appears. */
+export const estimateNote = 'est. = estimated from team-declared unit times.';
+
 export const expertise: ExpertiseBlock[] = [
   {
-    title: 'LLM inference & serving',
-    body: '[What you build here and the result it drives — latency, throughput or cost. Two to three lines, max.]',
+    title: 'Agentic systems with guardrails',
+    body: 'MCP servers that expose campaign-level tools, never raw hardware; frozen specs, human approval before any build, independent verification from raw files.',
   },
   {
-    title: 'Retrieval & evaluation',
-    body: '[How you make model outputs grounded and measurable — eval harnesses, RAG quality, regression gates.]',
+    title: 'Production automation at scale',
+    body: 'API pipelines with pre-checks, staged rollout, per-object audit logs and selective replay; from scripts to services (FastAPI).',
   },
   {
-    title: 'ML platform & reliability',
-    body: '[The infrastructure side — deployment, observability, on-call — and the scale it runs at.]',
-  },
-];
-
-// PLACEHOLDER — featured projects (moved to src/content/projects in phase 2)
-export const featuredProjects: FeaturedProject[] = [
-  {
-    slug: 'project-one',
-    category: 'LLM serving',
-    title: '[Project One]',
-    summary: '[One line: the problem and what you shipped.]',
-    metric: { value: '−XX%', label: 'p95 latency' },
-    stack: ['Python', 'vLLM', 'Kubernetes'],
-  },
-  {
-    slug: 'project-two',
-    category: 'Retrieval',
-    title: '[Project Two]',
-    summary: '[One line: the problem and what you shipped.]',
-    metric: { value: '+XX pts', label: 'answer accuracy' },
-    stack: ['TypeScript', 'Postgres', 'pgvector'],
-  },
-  {
-    slug: 'project-three',
-    category: 'Evaluation',
-    title: '[Project Three]',
-    summary: '[One line: the problem and what you shipped.]',
-    metric: { value: '$XXK/yr', label: 'compute saved' },
-    stack: ['Python', 'PyTorch', 'Airflow'],
+    title: 'Data engineering for operations',
+    body: 'Databricks / PySpark on fleet data: latest-snapshot joins, normalization, reconciliation across sources.',
   },
 ];

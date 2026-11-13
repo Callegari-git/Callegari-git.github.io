@@ -4,12 +4,17 @@ import Section from '../components/Section.astro';
 import Hero from '../components/Hero.astro';
 import MetricsStrip from '../components/MetricsStrip.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import MoreProjects from '../components/MoreProjects.astro';
 import Expertise from '../components/Expertise.astro';
 import Contact from '../components/Contact.astro';
-import { person, featuredProjects } from '../data/site';
+import { person } from '../data/site';
+import { getFeatured, getMore } from '../lib/projects';
 
-const title = `${person.name} · AI Engineer`;
-const description = `${person.name}, AI engineer in the San Francisco Bay Area. Selected projects, expertise and contact.`;
+const featured = await getFeatured();
+const more = await getMore();
+
+const title = `${person.name} · Software / AI Engineer`;
+const description = person.subline;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -17,9 +22,12 @@ const description = `${person.name}, AI engineer in the San Francisco Bay Area. 
   <MetricsStrip />
 
   <Section id="work" index="01" label="Selected work" title="Featured projects">
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 md:[&>*:last-child:nth-child(odd)]:col-span-2 lg:[&>*:last-child:nth-child(odd)]:col-span-1">
-      {featuredProjects.map((project) => <ProjectCard project={project} />)}
+    <div
+      class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 md:[&>*:last-child:nth-child(odd)]:col-span-2 lg:[&>*:last-child:nth-child(odd)]:col-span-1"
+    >
+      {featured.map((project) => <ProjectCard project={project} />)}
     </div>
+    <MoreProjects projects={more} />
   </Section>
 
   <Section id="expertise" index="02" label="Expertise" title="What I work on">

@@ -1,0 +1,49 @@
+---
+import MetricValue from './MetricValue.astro';
+import StatusBadge from './StatusBadge.astro';
+import { projectHref, type Project } from '../lib/projects';
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+{
+  projects.length > 0 && (
+    <div class="mt-12 md:mt-16">
+      <h3 class="label mb-4">More projects</h3>
+      <ul class="border-t border-rule">
+        {projects.map((project) => {
+          const { title, category, summary, metrics, page } = project.data;
+          const highlight = metrics[0];
+          return (
+            <li class="grid gap-x-8 gap-y-2 border-b border-rule py-5 md:grid-cols-[1fr_auto]">
+              <div>
+                <div class="mb-1 flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <span class="label">{category}</span>
+                  <StatusBadge project={project} />
+                </div>
+                <p class="font-display text-h3 text-ink">
+                  {page ? <a href={projectHref(project)} class="text-ink hover:text-accent">{title}</a> : title}
+                </p>
+                <p class="mt-1 max-w-text">{summary}</p>
+              </div>
+              {highlight && (
+                <p class="md:text-right">
+                  <MetricValue
+                    value={highlight.value}
+                    estimated={highlight.estimated}
+                    class="text-metric font-semibold text-ink"
+                  />
+                  <span class="block max-w-56 text-sm md:ml-auto">{highlight.label}</span>
+                </p>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  )
+}

@@ -141,6 +141,59 @@
     @apply inline-flex min-h-11 items-center gap-2 rounded-[3px] px-5 text-sm font-semibold no-underline transition-colors duration-150;
   }
 
+  /*
+   * Case-study body (rendered Markdown) + the Stack / Links sections that follow it.
+   * Each "## Section" gets a hairline and a serif heading; text stays in the 720px column.
+   */
+  .case-body h2,
+  .case-section h2 {
+    @apply mt-12 mb-4 border-t border-rule pt-8 font-display text-h3 text-ink md:mt-16;
+  }
+
+  .case-body > :first-child {
+    @apply mt-8;
+  }
+
+  .case-body h2,
+  .case-body p,
+  .case-body ul,
+  .case-body ol {
+    @apply max-w-text;
+  }
+
+  .case-body p + p,
+  .case-body p + ul,
+  .case-body ul + p,
+  .case-body pre + p {
+    @apply mt-4;
+  }
+
+  .case-body ul {
+    @apply list-disc space-y-2 pl-5 marker:text-muted;
+  }
+
+  .case-body strong {
+    @apply font-semibold text-ink;
+  }
+
+  .case-body :not(pre) > code {
+    @apply rounded-[3px] bg-accent-tint px-1 py-0.5 font-mono text-[0.875em] text-ink;
+  }
+
+  /* Architecture diagram placeholder: the text flow from the brief, until a real diagram replaces it. */
+  .case-body pre {
+    @apply relative my-6 overflow-x-auto rounded-[4px] border border-dashed border-muted/60 bg-surface p-5 pt-10 font-mono text-sm leading-relaxed text-ink;
+  }
+
+  .case-body pre::before {
+    @apply absolute top-3 left-5 font-mono text-label font-medium text-muted uppercase;
+    content: "Diagram placeholder";
+  }
+
+  .case-section {
+    @apply max-w-text;
+  }
+
   /* Use together with .btn: class="btn btn-primary" */
   .btn-primary {
     @apply bg-accent text-white hover:bg-accent-hover hover:text-white;

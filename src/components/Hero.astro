@@ -1,16 +1,18 @@
 ---
+import ProfileLinks from './ProfileLinks.astro';
 import { person, links } from '../data/site';
 
 const facts = [
   { label: 'Role', value: person.role },
   { label: 'Company', value: person.company },
   { label: 'Based in', value: person.location },
+  { label: 'Open to', value: person.openTo },
 ];
 ---
 
 <section aria-labelledby="hero-title" class="gutter">
   <div class="mx-auto max-w-grid pt-12 pb-12 md:pt-16 md:pb-16">
-    <p class="label mb-4">{person.kicker}</p>
+    <p class="label mb-4">{person.roleLine}</p>
     <h1 id="hero-title" class="text-h1">{person.name}</h1>
 
     <dl class="mt-6 flex flex-wrap gap-x-10 gap-y-3">
@@ -25,32 +27,14 @@ const facts = [
     </dl>
 
     <p class="mt-8 max-w-text font-display text-h2 text-ink">{person.headline}</p>
+    <p class="mt-4 max-w-text text-lead">{person.subline}</p>
 
     <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
       <a href={person.cvHref} class="btn btn-primary" download>
         Download CV
         <span aria-hidden="true">↓</span>
       </a>
-      <ul class="flex flex-wrap gap-x-6 gap-y-2" aria-label="Profiles">
-        {
-          links.map((link) => {
-            const external = link.href.startsWith('http');
-            return (
-              <li>
-                <a
-                  href={link.href}
-                  class="text-sm font-semibold"
-                  {...(external ? { rel: 'me noopener', target: '_blank' } : {})}
-                >
-                  {link.label}
-                  {external && <span aria-hidden="true"> ↗</span>}
-                  {external && <span class="sr-only"> (opens in a new tab)</span>}
-                </a>
-              </li>
-            );
-          })
-        }
-      </ul>
+      <ProfileLinks links={links} />
     </div>
   </div>
 </section>

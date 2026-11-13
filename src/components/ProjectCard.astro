@@ -1,41 +1,71 @@
 ---
-import type { FeaturedProject } from '../data/site';
+import MetricValue from './MetricValue.astro';
+import StatusBadge from './StatusBadge.astro';
+import { projectHref, type Project } from '../lib/projects';
 
 interface Props {
-  project: FeaturedProject;
+  project: Project;
 }
 
 const { project } = Astro.props;
-const href = `/projects/${project.slug}`;
+const { title, category, summary, metrics, stack, page } = project.data;
+const highlight = metrics[0];
+const href = page ? projectHref(project) : undefined;
+// Linked cards use a stretched link: the whole card is clickable, but only the title is announced.
 ---
 
 <article
-  class="group relative flex flex-col rounded-[4px] border border-rule bg-surface p-6 transition duration-300 ease-out focus-within:border-accent hover:-translate-y-0.5 hover:border-accent motion-reduce:hover:translate-y-0"
+  class:list={[
+    'group relative flex flex-col rounded-[4px] border border-rule bg-surface p-6',
+    href &&
+      'transition duration-300 ease-out focus-within:border-accent hover:-translate-y-0.5 hover:border-accent motion-reduce:hover:translate-y-0',
+  ]}
 >
-  <p class="label mb-3">{project.category}</p>
+  <div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+    <p class="label">{category}</p>
+    <StatusBadge project={project} />
+  </div>
+
   <h3 class="mb-2 text-h3">
-    {/* Stretched link: the whole card is clickable, but only the title is announced. */}
-    <a
-      href={href}
-      class="text-ink no-underline group-hover:text-accent after:absolute after:inset-0 after:content-['']"
-    >
-      {project.title}
-    </a>
-  </h3>
-  <p class="mb-6">{project.summary}</p>
-
-  <p class="mb-6 flex items-baseline gap-2">
-    <span class="text-metric font-semibold text-accent tabular-nums">{project.metric.value}</span>
-    <span class="label">{project.metric.label}</span>
-  </p>
-
-  <ul class="mt-auto flex flex-wrap gap-2" aria-label="Stack">
     {
-      project.stack.map((tech) => (
-        <li class="rounded-[3px] bg-accent-tint px-2 py-1 font-mono text-label text-ink-2">{tech}</li>
-      ))
+      href ? (
+        <a
+          href={href}
+          class="text-ink no-underline group-hover:text-accent after:absolute after:inset-0 after:content-['']"
+        >
+          {title}
+        </a>
+      ) : (
+        title
+      )
     }
-  </ul>
+  </h3>
+  <p class="mb-6">{summary}</p>
 
-  <p class="mt-6 text-sm font-semibold text-accent" aria-hidden="true">Case study →</p>
+  {
+    highlight ? (
+      <p class="mb-6">
+        <MetricValue
+          value={highlight.value}
+          estimated={highlight.estimated}
+          class="block text-metric font-semibold text-accent"
+        />
+        <span class="mt-1 block text-sm text-ink-2">{highlight.label}</span>
+      </p>
+    ) : (
+      <p class="mb-6 font-mono text-label text-muted">[CONFIRM: key result]</p>
+    )
+  }
+
+  {
+    stack.length > 0 && (
+      <ul class="mt-auto flex flex-wrap gap-2" aria-label="Stack">
+        {stack.slice(0, 4).map((tech) => (
+          <li class="rounded-[3px] bg-accent-tint px-2 py-1 font-mono text-label text-ink-2">{tech}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  {href && <p class="mt-6 text-sm font-semibold text-accent" aria-hidden="true">Case study →</p>}
 </article>

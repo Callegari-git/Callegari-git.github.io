@@ -1,0 +1,172 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MetricValue from '../../components/MetricValue.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import { person, estimateNote } from '../../data/site';
+import {
+  getPaged,
+  projectHref,
+  formatPeriod,
+  isUrl,
+  metaDescription,
+  type Project,
+} from '../../lib/projects';
+
+export const getStaticPaths = (async () => {
+  const projects = await getPaged();
+  return projects.map((project, i) => ({
+    params: { slug: project.id },
+    props: { project, prev: projects[i - 1], next: projects[i + 1] },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  project: Project;
+  prev?: Project | undefined;
+  next?: Project | undefined;
+}
+
+const { project, prev, next } = Astro.props;
+const { title, summary, category, date, end, role, team, confirm, metrics, stack, links } = project.data;
+const { Content } = await render(project);
+
+const facts = [
+  { label: 'Role', value: role },
+  { label: 'Period', value: formatPeriod(date, end) },
+  ...(team ? [{ label: 'Team', value: team }] : []),
+];
+
+const linkLabels = { repo: 'Repository', demo: 'Live demo', slides: 'Slides' } as const;
+const linkList = (Object.keys(linkLabels) as (keyof typeof linkLabels)[])
+  .filter((key) => links[key])
+  .map((key) => ({ label: linkLabels[key], value: links[key] as string }));
+
+const hasEstimate = metrics.some((m) => m.estimated || /\best\./.test(m.label));
+---
+
+<BaseLayout title={`${title} · ${person.name}`} description={metaDescription(summary)}>
+  <article class="gutter">
+    <div class="mx-auto max-w-grid pt-8 pb-16 md:pt-12 md:pb-24">
+      <a href="/#work" class="text-sm font-semibold no-underline hover:underline">← All projects</a>
+
+      <header class="mt-10 md:mt-14">
+        <div class="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2">
+          <p class="label">{category}</p>
+          <StatusBadge project={project} />
+        </div>
+        <h1 class="max-w-text text-h1">{title}</h1>
+        <p class="mt-6 max-w-text text-lead">{summary}</p>
+
+        <dl class="mt-8 flex flex-wrap gap-x-10 gap-y-4">
+          {
+            facts.map((fact) => (
+              <div>
+                <dt class="label">{fact.label}</dt>
+                <dd class="mt-1 text-ink">{fact.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+
+        {
+          confirm.length > 0 && (
+            <ul class="mt-6 space-y-1">
+              {confirm.map((note) => (
+                <li class="max-w-text font-mono text-label text-muted">{note}</li>
+              ))}
+            </ul>
+          )
+        }
+      </header>
+
+      {
+        metrics.length > 0 && (
+          <section aria-labelledby="results-title" class="mt-12 border-t border-rule pt-8 md:mt-16">
+            <h2 id="results-title" class="label mb-6">
+              Key results
+            </h2>
+            <dl class="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+              {metrics.map((metric) => (
+                <div class="flex flex-col gap-2">
+                  <dt class="order-2 text-sm">{metric.label}</dt>
+                  <dd class="order-1 text-metric font-semibold text-ink">
+                    <MetricValue value={metric.value} estimated={metric.estimated} />
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            {hasEstimate && <p class="mt-6 font-mono text-label text-muted">{estimateNote}</p>}
+          </section>
+        )
+      }
+
+      <div class="case-body mt-4">
+        <Content />
+      </div>
+
+      {
+        stack.length > 0 && (
+          <section aria-labelledby="stack-title" class="case-section">
+            <h2 id="stack-title">Stack</h2>
+            <ul class="flex max-w-text flex-wrap gap-2">
+              {stack.map((tech) => (
+                <li class="rounded-[3px] bg-accent-tint px-2 py-1 font-mono text-label text-ink-2">{tech}</li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        linkList.length > 0 && (
+          <section aria-labelledby="links-title" class="case-section">
+            <h2 id="links-title">Links</h2>
+            <ul class="max-w-text space-y-2">
+              {linkList.map((link) => (
+                <li>
+                  {isUrl(link.value) ? (
+                    <a href={link.value} rel="noopener" target="_blank">
+                      {link.label}
+                      <span aria-hidden="true"> ↗</span>
+                      <span class="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  ) : (
+                    <>
+                      <span class="text-ink">{link.label}: </span>
+                      <span class="font-mono text-label text-muted">{link.value}</span>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      <nav aria-label="More case studies" class="mt-16 grid gap-6 border-t border-rule pt-8 sm:grid-cols-2">
+        <div>
+          {
+            prev && (
+              <a href={projectHref(prev)} class="group block no-underline">
+                <span class="label block">← Previous</span>
+                <span class="mt-1 block font-display text-h3 text-ink group-hover:text-accent">{prev.data.title}</span>
+              </a>
+            )
+          }
+        </div>
+        <div class="sm:text-right">
+          {
+            next && (
+              <a href={projectHref(next)} class="group block no-underline">
+                <span class="label block">Next →</span>
+                <span class="mt-1 block font-display text-h3 text-ink group-hover:text-accent">{next.data.title}</span>
+              </a>
+            )
+          }
+        </div>
+      </nav>
+    </div>
+  </article>
+</BaseLayout>

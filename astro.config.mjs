@@ -37,6 +37,11 @@ export default defineConfig({
       fallbacks: ['ui-monospace', 'monospace'],
     },
   ],
+  // No syntax highlighting: the only code blocks are plain-text architecture flows,
+  // styled by .case-body pre in global.css.
+  markdown: {
+    syntaxHighlight: false,
+  },
   vite: {
     plugins: [tailwindcss()],
   },

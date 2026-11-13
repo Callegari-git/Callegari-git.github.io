@@ -1,0 +1,42 @@
+---
+# Authoring guide — this file is ignored by the collection (filename starts with "_").
+# To add a project: copy this file to <slug>.md, fill it in, done.
+title: Project title
+slug: project-slug # must match the filename
+summary: One or two sentences — the problem and what shipped.
+category: Short category · Optional second part
+date: 2026-01-01 # start
+end: 2026-06-30 # omit for "present"
+role: Your role, Company
+status: production # production | prototype | ongoing
+# statusConfirm: '[CONFIRM: …]' # shown instead of the status badge
+# team: Team of N · what I led # team projects only; also add a "My part" section
+# confirm: ['[CONFIRM: …]'] # notes shown under the header
+featured: false # true = card in "Featured projects"
+order: 99 # sort order (home + previous/next)
+# page: false # card only, no case-study page
+stack: [Python]
+metrics: # the first one is the card's highlight
+  - value: '123'
+    label: what the number measures
+  # estimated: true # shows an "est." tag
+links: {} # repo / demo / slides: a URL or '[CONFIRM: …]'
+---
+
+## Problem
+
+## Approach
+
+## My part
+
+Team projects only.
+
+## Architecture
+
+```text
+input → step → step → output
+```
+
+## Results
+
+## Limits

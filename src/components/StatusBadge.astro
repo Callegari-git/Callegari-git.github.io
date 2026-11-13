@@ -1,0 +1,17 @@
+---
+import { statusLabel, type Project } from '../lib/projects';
+
+interface Props {
+  project: Project;
+}
+
+const { status, statusConfirm } = Astro.props.project.data;
+---
+
+{
+  statusConfirm ? (
+    <span class="font-mono text-label text-muted">{statusConfirm}</span>
+  ) : (
+    <span class="label rounded-[3px] bg-accent-tint px-2 py-0.5 text-accent">{statusLabel[status]}</span>
+  )
+}

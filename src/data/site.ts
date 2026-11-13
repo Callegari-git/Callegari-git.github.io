@@ -25,9 +25,12 @@ export interface ExpertiseBlock {
 
 export const person = {
   name: 'Sébastien Callegari',
+  /** Used by the OG image and its alt text. */
   roleLine: 'Software / AI Engineer · LLM agents, MCP & tool use',
-  role: 'AI Engineer, Industry Capstone',
-  company: 'UC Berkeley × Celedon',
+  /** Hero kicker (mono label above the name). */
+  kicker: 'Software / AI Engineer · San Francisco Bay Area · Open to full-time roles in 2027',
+  /** Hero sub-line under the name. */
+  tagline: 'Engineer · ML, LLM agents & automation in production',
   location: 'San Francisco Bay Area',
   openTo: 'Full-time roles in 2027 · on-site, hybrid, remote',
   headline: 'An agent should never grade its own work. I build the guardrails that let AI act on real systems.',
@@ -35,6 +38,16 @@ export const person = {
   availability: 'Open to full-time roles in 2027 (MEng ends May 2027) · on-site, hybrid, remote.',
   email: 'sebastien_callegari@berkeley.edu',
   cvHref: '/cv.pdf',
+} as const;
+
+/** Hero label/value list. No Celedon mention in the hero. */
+export const heroFacts = {
+  schools: ['UC Berkeley', 'Arts et Métiers', 'Paris 1 Panthéon-Sorbonne'],
+  focus: ['ML', 'LLM agents', 'MCP', 'Backend', 'Data'],
+  now: {
+    title: 'Software / AI Engineer',
+    org: 'UC Berkeley',
+  },
 } as const;
 
 export const isPlaceholder = (href: string) => href.startsWith('[CONFIRM');

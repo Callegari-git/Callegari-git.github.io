@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import Hero from '../components/Hero.astro';
-import MetricsStrip from '../components/MetricsStrip.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import MoreProjects from '../components/MoreProjects.astro';
 import Expertise from '../components/Expertise.astro';
@@ -22,7 +21,6 @@ const description = person.subline;
 
 <BaseLayout title={title} description={description}>
   <Hero />
-  <MetricsStrip />
 
   <Section id="work" index="01" label="Selected work" title="Featured projects">
     <div

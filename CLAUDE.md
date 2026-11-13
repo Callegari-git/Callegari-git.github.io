@@ -69,7 +69,6 @@ Leave:
 - Accent: Option A, deep blue `#1C3F8F` (hover `#163478`, tint `#E8EDF7`)
 - Fonts: Fraunces (display), Inter (body), JetBrains Mono (labels/data)
 - Use the palette, type scale, spacing and motion tokens from docs/design-audit.md as the source of truth
-- Add a key-metrics strip right after the hero (3–4 big numbers + mono label)
 - Case-study labels: Problem / Approach / Architecture / Results (do not reuse reference sites' labels)
 - LLM animation: pinned for at most ~3 viewport heights, with a static labelled diagram for reduced-motion and no-JS
 

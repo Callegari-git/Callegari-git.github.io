@@ -58,26 +58,7 @@ export const links: ProfileLink[] = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sebastiencallegari/' },
 ];
 
-export const metrics: Metric[] = [
-  {
-    value: '11.5 min',
-    label: 'text request to a checked, printable object with a circuit inside — $6.05 of model cost',
-  },
-  {
-    value: '15,000+',
-    label: 'config changes pushed to ~4,000 EV chargers in < 1 month (vs ~4 months manual, est.)',
-  },
-  {
-    value: '10,000',
-    label: 'chargers migrated across 5 operators, scripts built in 2 weeks',
-  },
-  {
-    value: '600,000+',
-    label: 'support tickets unarchived and converted, external vendor avoided',
-  },
-];
-
-/** Shown wherever an estimate appears. */
+/** Shown wherever an estimate appears (case-study pages). */
 export const estimateNote = 'est. = estimated from team-declared unit times.';
 
 export const expertise: ExpertiseBlock[] = [

@@ -1,0 +1,107 @@
+---
+/**
+ * Email dialog built on the native Popover API: any
+ * <button popovertarget="email-popover"> opens it, with no JS. Esc and a click
+ * outside close it; the browser returns focus to the button that opened it.
+ * Initial focus: the first focusable [autofocus] element, i.e. Copy, or
+ * "Open in mail app" when Copy is hidden (no JS / no Clipboard API).
+ * Render it once per page that has an Email trigger.
+ */
+import CopyEmail from './CopyEmail.astro';
+import { person, EMAIL_POPOVER_ID } from '../data/site';
+
+const [user, domain] = person.email.split('@');
+---
+
+<div id={EMAIL_POPOVER_ID} popover role="dialog" aria-labelledby="email-popover-label" class="email-popover">
+  <div class="flex items-start justify-between gap-4">
+    <p id="email-popover-label" class="label pt-2">Email</p>
+    <button
+      type="button"
+      popovertarget={EMAIL_POPOVER_ID}
+      popovertargetaction="hide"
+      aria-label="Close"
+      class="close -mt-1 -mr-2"
+    >
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 3l10 10M13 3L3 13"></path>
+      </svg>
+    </button>
+  </div>
+
+  {/* <wbr> lets the address break after "@" on narrow screens. */}
+  <p class="mt-2 text-lead font-medium break-words text-ink select-all">
+    {user}<wbr />@{domain}
+  </p>
+
+  <div class="mt-6 flex flex-wrap gap-3">
+    <CopyEmail email={person.email} autofocus />
+    <a href={`mailto:${person.email}`} class="btn btn-secondary" autofocus>Open in mail app</a>
+  </div>
+</div>
+
+<style>
+  .email-popover {
+    /* UA popover styles center it (position: fixed; inset: 0; margin: auto), but
+       Tailwind's preflight resets margin to 0, so restore it. */
+    margin: auto;
+    width: calc(100% - 40px);
+    max-width: 420px;
+    padding: 24px;
+    border: 1px solid var(--color-rule);
+    border-radius: 6px;
+    background: var(--color-surface);
+    color: var(--color-ink-2);
+    box-shadow:
+      0 1px 2px rgb(30 36 48 / 0.06),
+      0 12px 32px rgb(30 36 48 / 0.16);
+  }
+
+  .email-popover:popover-open {
+    animation: popover-in 180ms ease-out;
+  }
+
+  .email-popover::backdrop {
+    background: rgb(30 36 48 / 0.45);
+  }
+
+  .email-popover:popover-open::backdrop {
+    animation: backdrop-in 180ms ease-out;
+  }
+
+  .close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 3px;
+    color: var(--color-muted);
+    cursor: pointer;
+    transition: color 150ms;
+  }
+
+  .close:hover {
+    color: var(--color-accent);
+  }
+
+  @keyframes popover-in {
+    from {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+  }
+
+  @keyframes backdrop-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .email-popover:popover-open,
+    .email-popover:popover-open::backdrop {
+      animation: none;
+    }
+  }
+</style>

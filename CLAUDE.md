@@ -90,7 +90,7 @@ Leave:
 ## Quality bar (check before saying "done")
 - Lighthouse ≥ 95 in Performance, Accessibility, Best Practices, SEO
 - JS shipped on `/` outside the animation island: close to zero
-  - Only exception: the email **Copy** button (`src/components/CopyEmail.astro`), one tiny inline script, progressive enhancement: the button stays hidden without JS or Clipboard API, and the address is always written out in full (hero + Contact) as a selectable `mailto:` link
+  - Only exception: the **Copy** button in the email dialog (`src/components/CopyEmail.astro`), one tiny inline script, progressive enhancement: the button stays hidden without JS or Clipboard API. The dialog itself (`EmailPopover.astro`) uses the native Popover API and needs no JS to open/close; the address stays written out in full in the Contact `<dl>`
 - Responsive at 375px, 768px, 1280px
 - Full keyboard navigation, WCAG AA contrast, `alt` on every image
 - Adding a project = creating one Markdown file, nothing else

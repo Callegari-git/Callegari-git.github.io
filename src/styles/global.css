@@ -194,6 +194,11 @@
     @apply max-w-text;
   }
 
+  /* A <button> that looks like an inline link (e.g. the hero "Email" trigger). */
+  .link-button {
+    @apply cursor-pointer text-accent underline decoration-1 underline-offset-[0.2em] transition-colors duration-150 hover:text-accent-hover;
+  }
+
   /* Use together with .btn: class="btn btn-primary" */
   .btn-primary {
     @apply bg-accent text-white hover:bg-accent-hover hover:text-white;

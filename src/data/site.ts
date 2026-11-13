@@ -45,6 +45,9 @@ export const heroFacts = {
 
 export const isPlaceholder = (href: string) => href.startsWith('[CONFIRM');
 
+/** id of the email dialog (EmailPopover.astro); Email triggers use popovertarget={EMAIL_POPOVER_ID}. */
+export const EMAIL_POPOVER_ID = 'email-popover';
+
 export const links: ProfileLink[] = [
   { label: 'Email', href: isPlaceholder(person.email) ? person.email : `mailto:${person.email}` },
   { label: 'GitHub', href: 'https://github.com/Callegari-git' },

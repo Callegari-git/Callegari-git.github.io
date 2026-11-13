@@ -1,6 +1,5 @@
 ---
-import CopyEmail from './CopyEmail.astro';
-import { person, links, isPlaceholder } from '../data/site';
+import { person, links, isPlaceholder, EMAIL_POPOVER_ID } from '../data/site';
 
 const contacts = [
   ...links.map((link) => ({
@@ -21,9 +20,9 @@ const contacts = [
         isPlaceholder(person.email) ? (
           <p class="font-mono text-label text-muted">{person.email}</p>
         ) : (
-          <a href={`mailto:${person.email}`} class="btn btn-primary">
+          <button type="button" popovertarget={EMAIL_POPOVER_ID} aria-haspopup="dialog" class="btn btn-primary cursor-pointer">
             Email me
-          </a>
+          </button>
         )
       }
       <a href={person.cvHref} class="btn btn-secondary" target="_blank" rel="noopener">
@@ -42,12 +41,7 @@ const contacts = [
           <div>
             <dt class="label">{c.label}</dt>
             <dd class="mt-1 break-words">
-              {c.href?.startsWith('mailto:') ? (
-                <span class="flex flex-wrap items-center gap-x-3 gap-y-1">
-                  <a href={c.href}>{c.text}</a>
-                  <CopyEmail email={c.text} />
-                </span>
-              ) : c.href ? (
+              {c.href ? (
                 <a href={c.href} {...(external ? { rel: 'me noopener', target: '_blank' } : {})}>
                   {c.text}
                   {external && <span class="sr-only"> (opens in a new tab)</span>}

@@ -12,12 +12,14 @@ order: 3
 stack:
   - Python
   - FastAPI
-  - Pydantic
   - Temporal
+  - AWS
+  - Docker
+  - Pydantic
   - REST APIs
-  - 'AWS [CONFIRM services]'
-  - 'Docker [CONFIRM]'
-metrics: []
+metrics:
+  - value: 'Hundreds'
+    label: charging sites provisioned in production, each from one Excel file in minutes — vs several months by hand (est.)
 ---
 
 ## Problem
@@ -34,16 +36,22 @@ one. One mistake left half-built objects in the platform.
 
 ## Architecture
 
+One Excel file describes the whole site. The service validates it, then a **Temporal** workflow runs the dependent
+API calls in order (retries and step state handled by Temporal) until the site is live in production.
+
 ```text
-Excel input → Pydantic validation (whole payload) → Temporal workflow
-            → dependency-ordered API calls (locations, stations, charge points, roaming partners)
-            → response check after each step → stop at the failing step with a clear error
+Excel file (whole site) → Pydantic validation (whole payload) → Temporal workflow
+                        → dependency-ordered API calls (locations, stations, charge points, roaming partners)
+                        → response check after each step, retries and step state in Temporal
+                        → site live in production · or stop at the failing step with a clear error
 ```
 
-Deployment: [CONFIRM details: AWS service (ECS/Fargate, Lambda + API Gateway, EC2…), containerized?, CI/CD, auth, secrets,
-logging/monitoring, environments (staging/prod)]
+Deployment: Docker container on AWS, connected to Temporal and to the platform's production API.
 
 ## Results
 
-[CONFIRM numbers: sites created since go-live, time per site before → after, failure/retry rate, latency, users (which teams
-call it), uptime]
+Time savings marked "est." are estimated from team-declared unit times.
+
+- Bringing a full charging infrastructure live by hand took **several months** (est.); with Scriptus it is **one
+  Excel file and a few minutes** of automated run.
+- **Several hundred sites** provisioned in production during the internship alone (Mar–Aug 2026).

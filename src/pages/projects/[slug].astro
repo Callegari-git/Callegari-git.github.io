@@ -47,7 +47,7 @@ const linkList = (Object.keys(linkLabels) as (keyof typeof linkLabels)[])
 const hasEstimate = metrics.some((m) => m.estimated || /\best\./.test(m.label));
 ---
 
-<BaseLayout title={`${title} · ${person.name}`} description={metaDescription(summary)}>
+<BaseLayout title={`${title} · ${person.name}`} description={metaDescription(summary)} type="article">
   <article class="gutter">
     <div class="mx-auto max-w-grid pt-8 pb-16 md:pt-12 md:pb-24">
       <a href="/#work" class="text-sm font-semibold no-underline hover:underline">← All projects</a>

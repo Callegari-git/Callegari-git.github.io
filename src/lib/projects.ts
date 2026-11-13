@@ -24,13 +24,17 @@ export async function getPaged(): Promise<Project[]> {
   return (await getProjects()).filter((p) => p.data.page);
 }
 
-export const projectHref = (p: Project) => `/projects/${p.id}`;
+/** Trailing slash = the URL the static build serves (and the canonical URL). */
+export const projectHref = (p: Project) => `/projects/${p.id}/`;
 
 const monthYear = new Intl.DateTimeFormat('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
 
+/** "Mar 2026" */
+export const formatMonth = (date: Date) => monthYear.format(date);
+
 /** "Mar 2026 – Aug 2026" or "Sep 2026 – present". */
 export function formatPeriod(start: Date, end?: Date): string {
-  return `${monthYear.format(start)} – ${end ? monthYear.format(end) : 'present'}`;
+  return `${formatMonth(start)} – ${end ? formatMonth(end) : 'present'}`;
 }
 
 export const isUrl = (value: string) => /^https?:\/\//.test(value);

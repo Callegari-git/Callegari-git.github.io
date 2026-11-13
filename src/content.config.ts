@@ -1,4 +1,4 @@
-import { defineCollection } from 'astro:content';
+import { defineCollection, reference } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
@@ -68,7 +68,10 @@ const experience = defineCollection({
     location: z.string(),
     start: z.coerce.date(),
     end: z.coerce.date().optional(),
-    highlights: z.array(z.string()).default([]),
+    /** 2–3 highlights, numbers kept. */
+    highlights: z.array(z.string()).max(3).default([]),
+    /** Related case study (project slug), shown as a "Case study →" link. */
+    project: reference('projects').optional(),
   }),
 });
 

@@ -2,9 +2,15 @@
 import { defineConfig, fontProviders } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
+import { SITE_URL, isPlaceholderSite } from './site.config.mjs';
+
+if (isPlaceholderSite) {
+  console.warn(`\n[site] SITE_URL is still the placeholder (${SITE_URL}). [CONFIRM: domain] in site.config.mjs\n`);
+}
 
 // https://astro.build/config
 export default defineConfig({
+  site: SITE_URL,
   // Self-hosted fonts via Astro's Fonts API (see docs/design-audit.md → "Type trio").
   fonts: [
     {

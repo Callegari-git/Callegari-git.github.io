@@ -1,19 +1,57 @@
 ---
-import ProfileLinks from './ProfileLinks.astro';
 import { person, links, isPlaceholder } from '../data/site';
+
+const contacts = [
+  ...links.map((link) => ({
+    label: link.label,
+    href: isPlaceholder(link.href) ? undefined : link.href,
+    // Show the address/handle itself so it can be read and copied.
+    text: isPlaceholder(link.href) ? link.href : link.href.replace(/^mailto:/, '').replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, ''),
+  })),
+  { label: 'Based in', href: undefined, text: person.location },
+];
 ---
 
-<p class="mb-8 text-lead">{person.availability}</p>
-
-<div class="flex flex-wrap items-center gap-x-6 gap-y-4">
-  {
-    isPlaceholder(person.email) ? (
-      <p class="font-mono text-label text-muted">{person.email}</p>
-    ) : (
-      <a href={`mailto:${person.email}`} class="btn btn-primary">
-        Email me
+<div class="grid gap-10 lg:grid-cols-12 lg:gap-8">
+  <div class="lg:col-span-7">
+    <p class="max-w-text text-lead text-ink">{person.availability}</p>
+    <div class="mt-8 flex flex-wrap items-center gap-4">
+      {
+        isPlaceholder(person.email) ? (
+          <p class="font-mono text-label text-muted">{person.email}</p>
+        ) : (
+          <a href={`mailto:${person.email}`} class="btn btn-primary">
+            Email me
+          </a>
+        )
+      }
+      <a href={person.cvHref} class="btn btn-secondary" download>
+        Download CV
+        <span aria-hidden="true">↓</span>
       </a>
-    )
-  }
-  <ProfileLinks links={links.filter((link) => link.label !== 'Email')} />
+    </div>
+  </div>
+
+  <dl class="space-y-4 lg:col-span-5 lg:border-l lg:border-rule lg:pl-8">
+    {
+      contacts.map((c) => {
+        const external = c.href?.startsWith('http');
+        return (
+          <div>
+            <dt class="label">{c.label}</dt>
+            <dd class="mt-1 break-words">
+              {c.href ? (
+                <a href={c.href} {...(external ? { rel: 'me noopener', target: '_blank' } : {})}>
+                  {c.text}
+                  {external && <span class="sr-only"> (opens in a new tab)</span>}
+                </a>
+              ) : (
+                <span class:list={[isPlaceholder(c.text) ? 'font-mono text-label text-muted' : 'text-ink']}>{c.text}</span>
+              )}
+            </dd>
+          </div>
+        );
+      })
+    }
+  </dl>
 </div>

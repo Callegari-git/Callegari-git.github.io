@@ -1,0 +1,46 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import { formatMonth, projectHref } from '../lib/projects';
+
+const roles = await Promise.all(
+  (await getCollection('experience'))
+    .sort((a, b) => b.data.start.getTime() - a.data.start.getTime())
+    .map(async (role) => ({
+      data: role.data,
+      project: role.data.project ? await getEntry(role.data.project) : undefined,
+    })),
+);
+---
+
+<ol class="border-t border-rule">
+  {
+    roles.map(({ data, project }) => (
+      <li class="grid gap-x-8 gap-y-2 border-b border-rule py-8 md:grid-cols-[1fr_auto]">
+        <p class="font-mono text-label text-muted md:order-2 md:pt-2 md:text-right">
+          <time datetime={data.start.toISOString().slice(0, 7)}>{formatMonth(data.start)}</time>
+          {' – '}
+          {data.end ? <time datetime={data.end.toISOString().slice(0, 7)}>{formatMonth(data.end)}</time> : 'present'}
+        </p>
+        <div class="md:order-1">
+          <h3 class="text-h3">{data.title}</h3>
+          <p class="mt-1 text-ink">
+            {data.company}
+            <span class="text-muted"> · {data.location}</span>
+          </p>
+          {data.highlights.length > 0 && (
+            <ul class="mt-4 max-w-text list-disc space-y-2 pl-5 marker:text-muted">
+              {data.highlights.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )}
+          {project?.data.page && (
+            <a href={projectHref(project)} class="mt-4 inline-block text-sm font-semibold">
+              Case study<span class="sr-only">: {project.data.title}</span> →
+            </a>
+          )}
+        </div>
+      </li>
+    ))
+  }
+</ol>

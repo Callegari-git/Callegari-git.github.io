@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "og": "node scripts/og-image.mjs"
+    "og": "node scripts/og-image.mjs",
+    "icons": "node scripts/apple-touch-icon.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.5",

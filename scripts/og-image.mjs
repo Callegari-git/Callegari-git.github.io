@@ -2,23 +2,13 @@
 // Usage: npm run og   (needs a local Chrome; override the path with CHROME_PATH=…)
 // No npm dependency: text comes from src/data/site.ts (Node 24 strips TS types natively),
 // rendering is done by headless Chrome. Commit the resulting public/og.png.
-import { execFileSync } from 'node:child_process';
-import { mkdtempSync, writeFileSync, rmSync, statSync } from 'node:fs';
-import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { person } from '../src/data/site.ts';
+import { screenshot } from './chrome-screenshot.mjs';
 
 const root = resolve(fileURLToPath(import.meta.url), '../..');
 const out = join(root, 'public', 'og.png');
-const chrome =
-  process.env.CHROME_PATH ??
-  {
-    darwin: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    win32: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-  }[process.platform] ??
-  'google-chrome';
-
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 // Colors mirror the tokens in src/styles/global.css.
@@ -48,21 +38,4 @@ const html = `<!doctype html>
   <p class="foot"><b>${esc(person.location)}</b><span>${esc(person.openTo)}</span></p>
 </body></html>`;
 
-const dir = mkdtempSync(join(tmpdir(), 'og-'));
-const page = join(dir, 'og.html');
-writeFileSync(page, html);
-try {
-  execFileSync(chrome, [
-    '--headless=new',
-    '--disable-gpu',
-    '--hide-scrollbars',
-    '--force-device-scale-factor=1',
-    '--window-size=1200,630',
-    '--virtual-time-budget=8000', // let web fonts load before the screenshot
-    `--screenshot=${out}`,
-    `file://${page}`,
-  ], { stdio: 'ignore' });
-} finally {
-  rmSync(dir, { recursive: true, force: true });
-}
-console.log(`Wrote ${out} (${Math.round(statSync(out).size / 1024)} KB)`);
+screenshot(html, out, 1200, 630);

@@ -1,91 +1,98 @@
+@AGENTS.md
+
 # Portfolio — AI Engineer (SF Bay Area)
 
-## Objectif
-Portfolio personnel professionnel pour décrocher un poste d'AI engineer dans la Bay Area.
-Lecteur cible : recruteur ou ingénieur qui passe **moins de 60 secondes** sur le site.
-Priorité absolue : **clarté et crédibilité d'abord, effet "wow" ensuite.**
+## Goal
+A professional personal portfolio to land an AI engineer role in the San Francisco Bay Area.
+Target reader: a recruiter or engineer who spends **less than 60 seconds** on the site.
+Top priority: **clarity and credibility first, "wow" second.**
 
-## Stack (ne pas en changer sans me demander)
-- Astro 6 + TypeScript
-- Tailwind CSS (ou CSS simple, pas de librairie de composants UI)
-- Content Collections en Markdown pour les projets et l'expérience
-- Svelte uniquement pour les îles interactives (animation IA, chatbot)
-- GSAP uniquement dans l'île d'animation
-- Adaptateur Cloudflare (ou Vercel) ; toutes les pages en `prerender = true`, seule `/api/chat` en `prerender = false`
-- Ne pas ajouter de dépendance sans justification écrite dans la PR / le message
+## Language
+- All site content, UI copy, metadata, alt text and code comments are in **English (US)**.
+- Tone: confident, concise, concrete. No buzzwords, no filler. Prefer numbers over adjectives.
 
-## Références de design — ce qu'on prend, ce qu'on laisse
-On s'inspire des **principes** de ces sites. Ne jamais copier leur code, leurs textes, leurs images ou leur identité visuelle exacte.
+## Stack (do not change without asking me)
+- Astro (version installed in package.json, currently 7.x) + TypeScript (strict)
+- Tailwind CSS (or plain CSS) — no UI component library
+- Content Collections in Markdown for projects and experience
+- Svelte only for interactive islands (AI animation, chatbot)
+- GSAP only inside the animation island
+- Cloudflare (or Vercel) adapter added in phase 5 only; every page `prerender = true`, only `/api/chat` is `prerender = false`
+- Do not add a dependency without a written justification in your message
 
-### 1. ashwingupta.dev → base du site (structure + ton)
-À reprendre :
-- Mise en page éditoriale type "revue technique" : fond clair chaud, grands titres serif, corps sans-serif, petites étiquettes en monospace capitales (ROLE, COMPANY, ABOUT…)
-- En-tête : nom en grand + rôle + entreprise actuelle, liens email / GitHub / LinkedIn et bouton **Download CV** visibles sans scroller
-- Une phrase d'accroche qui affirme un point de vue technique
-- Sections "expertise" en 2–3 blocs courts (titre serif + paragraphe)
-- **Résultats chiffrés** dans chaque projet (latence, coût, gain, échelle)
-- Un bloc "What I don't do" / principes de travail
-À ne PAS reprendre :
-- Paragraphes justifiés (espacements irréguliers) → texte aligné à gauche
-- Longs paragraphes biographiques → max 3–4 lignes par paragraphe
+## Design references — what we take, what we leave
+We borrow **principles** from these sites. Never copy their code, copy text, images, logos or exact visual identity.
 
-### 2. elliott.mangham.dev → compacité + crédentials
-À reprendre :
-- Tout l'essentiel compréhensible en un écran
-- Panneau **Credentials** repliable (`<details>`, zéro JS) : diplômes, certifications, prix, publications, chiffres clés
-- Rangée de projets en aperçu (cartes horizontales) qui mène aux études de cas
-- Bloc CONNECT clair en fin de page + CTA "Book a call" / email
-À ne PAS reprendre :
-- Thème sombre complet (on reste sur la base claire d'Ashwin ; un mode sombre est optionnel)
-- Mentions de tarifs / budgets de projets (je ne suis pas une agence)
+### 1. ashwingupta.dev → base of the site (structure + tone)
+Take:
+- Editorial "technical review" layout: warm light background, large serif headings, sans-serif body, small uppercase monospace labels (ROLE, COMPANY, ABOUT…)
+- Header: name in large type + role + current company; email / GitHub / LinkedIn links and a **Download CV** button visible above the fold
+- One headline that states a clear technical point of view
+- "Expertise" as 2–3 short blocks (serif title + short paragraph)
+- **Quantified results** in every project (latency, cost, savings, scale)
+- A "What I don't do" / working principles block
+Leave:
+- Justified paragraphs (uneven word spacing) → left-aligned text
+- Long biographical paragraphs → max 3–4 lines per paragraph
 
-### 3. justus-john.com → UNE animation signature IA
-À reprendre :
-- Une seule section animée au scroll qui visualise le fonctionnement d'un LLM : phrase → tokens (avec IDs) → embeddings → self-attention couche par couche → token suivant
-- Style minimal, beaucoup d'espace blanc, cohérent avec la typo du site
-À ne PAS reprendre :
-- Narration "agence / vente de services" et maquettes de sites clients
-- Mascotte, multiples sections scroll-jacking : **une seule** section animée, le reste du site défile normalement
+### 2. elliott.mangham.dev → compactness + credentials
+Take:
+- Everything essential understandable within one screen
+- Collapsible **Credentials** panel (`<details>`, zero JS): degrees, certifications, awards, publications, key numbers
+- Row of project previews (horizontal cards) linking to case studies
+- Clear CONNECT block at the end of the page + "Book a call" / email CTA
+Leave:
+- Full dark theme (we keep Ashwin's light base; dark mode is optional)
+- Any mention of pricing / project budgets (I am not an agency)
 
-### Interdits globaux (vus sur d'autres sites Awwwards)
-- Pas d'écran d'entrée "Click to enter", pas de loader, pas de hero WebGL plein écran
-- Pas de scroll-jacking hors de la section animation
-- Pas de curseur custom, pas de son
-- Le contenu ne doit jamais attendre une animation pour être lisible
+### 3. justus-john.com → ONE signature AI animation
+Take:
+- A single scroll-driven section that visualizes how an LLM works: sentence → tokens (with IDs) → embeddings → self-attention layer by layer → next token
+- Minimal style, lots of whitespace, consistent with the site's typography
+Leave:
+- Agency / services sales narrative and client website mockups
+- Mascot, multiple scroll-jacked sections: **one** animated section only, the rest of the site scrolls normally
+
+### Global bans (seen on other Awwwards sites)
+- No "Click to enter" splash screen, no loader, no full-screen WebGL hero
+- No scroll-jacking outside the animation section
+- No custom cursor, no sound
+- Content must never wait for an animation to become readable
 
 ## Design system
-- Couleurs : fond crème clair (~#F3F0E8), texte encre (~#1E2430), gris secondaire, **un seul** accent (bleu profond ou orange brûlé — me proposer 2 options)
-- Typo : serif display pour les titres (ex. Fraunces ou Playfair Display), sans-serif pour le texte (ex. Inter ou DM Sans), mono pour les étiquettes (ex. JetBrains Mono). Charger via l'API Fonts d'Astro.
-- Grille : colonne de contenu max ~720px pour le texte, ~1100px pour les grilles de projets
-- Mouvement : transitions discrètes (opacity/translate ≤ 300ms) ; respecter `prefers-reduced-motion` partout
+- Colors: warm light background (~#F3F0E8), ink text (~#1E2430), secondary gray, **one** accent only (deep blue or burnt orange — propose 2 options)
+- Type: serif display for headings (e.g. Fraunces or Playfair Display), sans-serif for body (e.g. Inter or DM Sans), mono for labels (e.g. JetBrains Mono). Load via Astro's Fonts API.
+- Grid: text column max ~720px, project grids max ~1100px
+- Motion: subtle transitions (opacity/translate ≤ 300ms); respect `prefers-reduced-motion` everywhere
 
-## Structure du site
-- `/` : hero (nom, rôle, accroche, liens, CV) → expertise (3 blocs) → projets phares (3) → animation LLM → expérience (timeline courte) → credentials (`<details>`) → principes → contact
-- `/projects/[slug]` : étude de cas = problème → approche → architecture (schéma) → résultats chiffrés → stack → liens (repo, démo, papier)
-- `/cv.pdf` dans `public/`
-- Contenu dans `src/content/projects/*.md` et `src/content/experience/*.md` avec schéma Zod (title, date, role, stack[], metrics[], links, featured)
+## Site structure
+- `/`: hero (name, role, headline, links, CV) → expertise (3 blocks) → featured projects (3) → LLM animation → experience (short timeline) → credentials (`<details>`) → principles → contact
+- `/projects/[slug]`: case study = problem → approach → architecture (diagram) → quantified results → stack → links (repo, demo, paper)
+- `/cv.pdf` in `public/`
+- Content in `src/content/projects/*.md` and `src/content/experience/*.md` with a Zod schema (title, date, role, stack[], metrics[], links, featured)
+- SEO: title + description per page, Open Graph image, sitemap
 
-## Chatbot (phase 2, pas avant que le site soit fini)
-- Route `src/pages/api/chat.ts` (`prerender = false`), réponse en streaming
-- Clé API uniquement en variable d'environnement côté serveur
-- Contexte : prompt système construit à partir des Content Collections + CV (pas de RAG au départ)
-- Ne répond qu'aux questions sur moi et mon travail ; sinon renvoie vers l'email
-- Garde-fous : limite par IP, longueur max des messages, max tokens par réponse
-- UI : bouton discret en bas à droite, fermé par défaut — le site doit être 100 % utilisable sans
+## Chatbot (phase 5, not before the site is done)
+- Route `src/pages/api/chat.ts` (`prerender = false`), streamed responses
+- API key only in a server-side environment variable (`.env`, never committed)
+- Context: system prompt built from Content Collections + CV (no RAG at first)
+- Only answers questions about me and my work; otherwise points to my email
+- Guardrails: per-IP rate limit, max message length, max tokens per response
+- UI: discreet button bottom-right, closed by default — the site must be 100% usable without it
 
-## Critères de qualité (vérifier avant de dire "fini")
-- Lighthouse ≥ 95 en Performance, Accessibilité, Best Practices, SEO
-- JS envoyé sur `/` hors île d'animation : quasi nul
-- Responsive testé à 375px, 768px, 1280px
-- Navigation clavier complète, contrastes AA, `alt` sur toutes les images
-- Ajouter un projet = créer un fichier Markdown, rien d'autre
+## Quality bar (check before saying "done")
+- Lighthouse ≥ 95 in Performance, Accessibility, Best Practices, SEO
+- JS shipped on `/` outside the animation island: close to zero
+- Responsive at 375px, 768px, 1280px
+- Full keyboard navigation, WCAG AA contrast, `alt` on every image
+- Adding a project = creating one Markdown file, nothing else
 
-## Méthode de travail
-- Avancer **par phase**, et s'arrêter à la fin de chacune pour que je valide :
-  1. Squelette Astro + design system (couleurs, typo, layout) + page d'accueil avec contenu factice
-  2. Content Collections + pages projets
-  3. Panneau credentials + timeline + contact
-  4. Animation LLM
+## Working method
+- Work **phase by phase**, and stop at the end of each one for my review:
+  1. Design system (colors, type, layout) + home page with placeholder content
+  2. Content Collections + project pages
+  3. Credentials panel + timeline + contact
+  4. LLM animation
   5. Chatbot
-- Avant chaque phase : expliquer le plan en quelques lignes, puis coder
-- En cas de doute entre "plus beau" et "plus clair" : choisir **plus clair**
+- Before each phase: explain the plan in a few lines, then code
+- When torn between "prettier" and "clearer": choose **clearer**

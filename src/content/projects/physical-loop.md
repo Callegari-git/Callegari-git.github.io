@@ -35,7 +35,6 @@ metrics:
 links:
   project: https://celedon.solutions/
   slides: https://capstone-slides-lake.vercel.app/
-  repo: '[CONFIRM: is the repo public? Linked only once it is]'
 ---
 
 ## Problem
@@ -82,11 +81,10 @@ Rule: MCP never talks to the bench; the hardware layer never talks to the agent.
 - Live object run ("a desk lamp", 2026-10-28, Claude Opus 5.5): **11.5 minutes, $6.05 of model cost** against a $35
   run cap, with per-stage caps ($1 / $3 / $10 / $20). All 4 parts passed their geometry check on the first build;
   `check_housing` passes (assembly fit, wire lengths, circuit re-check); **4 agent tool calls refused** by the
-  guardrails in the mechanics stage. Record: `artifacts/object-runs/20261028-192434-a-desk-lamp/report.md`.
+  guardrails in the mechanics stage.
 - **First agent-driven print on the real CR-10 V2** (2026-10-28, supervised mode): part printed in ~13 min, one
   approval correctly declined on a mistyped confirmation code, no gate refusal, hash-chained audit log verified
-  intact. Record: `docs/runs/2026-10-28-first-agent-print.md`. [CONFIRM: measure the two 4.0 mm holes with
-  calipers — the record still says TODO]
+  intact.
 - Agent-written CadQuery code runs in a sandboxed process with static checks and timeouts; specs frozen by SHA-256.
 - 1,100+ automated tests across the repo (team), CI on every pull request.
 

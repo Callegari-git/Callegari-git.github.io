@@ -30,9 +30,10 @@ const facts = [
     <p class="mt-4 max-w-text text-lead">{person.subline}</p>
 
     <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-      <a href={person.cvHref} class="btn btn-primary" download>
-        Download CV
-        <span aria-hidden="true">↓</span>
+      <a href={person.cvHref} class="btn btn-primary" target="_blank" rel="noopener">
+        View CV
+        <span aria-hidden="true">↗</span>
+        <span class="sr-only">(opens in a new tab)</span>
       </a>
       <ProfileLinks links={links} />
     </div>

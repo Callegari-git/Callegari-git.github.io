@@ -25,9 +25,10 @@ const contacts = [
           </a>
         )
       }
-      <a href={person.cvHref} class="btn btn-secondary" download>
-        Download CV
-        <span aria-hidden="true">↓</span>
+      <a href={person.cvHref} class="btn btn-secondary" target="_blank" rel="noopener">
+        View CV
+        <span aria-hidden="true">↗</span>
+        <span class="sr-only">(opens in a new tab)</span>
       </a>
     </div>
   </div>

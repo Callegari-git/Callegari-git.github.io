@@ -1,5 +1,5 @@
 // Public site URL, used for canonical URLs, Open Graph, sitemap and robots.txt.
-// [CONFIRM: domain] — ".invalid" is a reserved TLD (RFC 2606), so this placeholder can never resolve.
-export const SITE_URL = 'https://confirm-domain.invalid';
+// GitHub Pages user site (repo Callegari-git.github.io): served from the root, no base path.
+export const SITE_URL = 'https://callegari-git.github.io';
 
 export const isPlaceholderSite = SITE_URL.endsWith('.invalid');

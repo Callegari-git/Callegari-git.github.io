@@ -87,6 +87,11 @@ Leave:
 - Full keyboard navigation, WCAG AA contrast, `alt` on every image
 - Adding a project = creating one Markdown file, nothing else
 
+## Git — hands off
+- **Never run `git commit` or `git push`** (nor `git add`, `git tag`, `git merge`, `git rebase`, `git reset`). I handle all commits and pushes myself.
+- Read-only Git commands are fine (`git status`, `git diff`, `git log`).
+- At the end of each phase, suggest a commit message I can use — do not run it.
+
 ## Working method
 - Work **phase by phase**, and stop at the end of each one for my review:
   1. Design system (colors, type, layout) + home page with placeholder content

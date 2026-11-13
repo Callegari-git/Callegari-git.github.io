@@ -1,0 +1,41 @@
+---
+import type { FeaturedProject } from '../data/site';
+
+interface Props {
+  project: FeaturedProject;
+}
+
+const { project } = Astro.props;
+const href = `/projects/${project.slug}`;
+---
+
+<article
+  class="group relative flex flex-col rounded-[4px] border border-rule bg-surface p-6 transition duration-300 ease-out focus-within:border-accent hover:-translate-y-0.5 hover:border-accent motion-reduce:hover:translate-y-0"
+>
+  <p class="label mb-3">{project.category}</p>
+  <h3 class="mb-2 text-h3">
+    {/* Stretched link: the whole card is clickable, but only the title is announced. */}
+    <a
+      href={href}
+      class="text-ink no-underline group-hover:text-accent after:absolute after:inset-0 after:content-['']"
+    >
+      {project.title}
+    </a>
+  </h3>
+  <p class="mb-6">{project.summary}</p>
+
+  <p class="mb-6 flex items-baseline gap-2">
+    <span class="text-metric font-semibold text-accent tabular-nums">{project.metric.value}</span>
+    <span class="label">{project.metric.label}</span>
+  </p>
+
+  <ul class="mt-auto flex flex-wrap gap-2" aria-label="Stack">
+    {
+      project.stack.map((tech) => (
+        <li class="rounded-[3px] bg-accent-tint px-2 py-1 font-mono text-label text-ink-2">{tech}</li>
+      ))
+    }
+  </ul>
+
+  <p class="mt-6 text-sm font-semibold text-accent" aria-hidden="true">Case study →</p>
+</article>

@@ -1,0 +1,14 @@
+---
+import { person } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="gutter border-t border-rule">
+  <div
+    class="mx-auto flex max-w-grid flex-col gap-2 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p>© {year} {person.name}</p>
+    <p>Built with Astro.</p>
+  </div>
+</footer>

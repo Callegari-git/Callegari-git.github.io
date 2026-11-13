@@ -1,16 +1,32 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Hero from '../components/Hero.astro';
+import MetricsStrip from '../components/MetricsStrip.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Expertise from '../components/Expertise.astro';
+import Contact from '../components/Contact.astro';
+import { person, featuredProjects } from '../data/site';
+
+const title = `${person.name} · AI Engineer`;
+const description = `${person.name}, AI engineer in the San Francisco Bay Area. Selected projects, expertise and contact.`;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title={title} description={description}>
+  <Hero />
+  <MetricsStrip />
+
+  <Section id="work" index="01" label="Selected work" title="Featured projects">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 md:[&>*:last-child:nth-child(odd)]:col-span-2 lg:[&>*:last-child:nth-child(odd)]:col-span-1">
+      {featuredProjects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </Section>
+
+  <Section id="expertise" index="02" label="Expertise" title="What I work on">
+    <Expertise />
+  </Section>
+
+  <Section id="contact" index="03" label="Contact" title="Let's talk" width="text">
+    <Contact />
+  </Section>
+</BaseLayout>

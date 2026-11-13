@@ -1,0 +1,14 @@
+---
+import { expertise } from '../data/site';
+---
+
+<div class="grid gap-10 lg:grid-cols-3 lg:gap-8">
+  {
+    expertise.map((block) => (
+      <div class="border-t border-rule pt-6">
+        <h3 class="mb-3 text-h3">{block.title}</h3>
+        <p>{block.body}</p>
+      </div>
+    ))
+  }
+</div>

@@ -1,0 +1,35 @@
+---
+import { person, links, bookingHref } from '../data/site';
+
+const profiles = links.filter((link) => link.href.startsWith('http'));
+---
+
+<p class="mb-8 text-lead">
+  [One line on what you are looking for — e.g. AI engineering roles in the Bay Area, available from
+  Month YYYY.]
+</p>
+
+<div class="flex flex-wrap items-center gap-4">
+  <a href={`mailto:${person.email}`} class="btn btn-primary">Email me</a>
+  <a href={bookingHref} class="btn btn-secondary" rel="noopener" target="_blank">
+    Book a call
+    <span aria-hidden="true">↗</span>
+    <span class="sr-only">(opens in a new tab)</span>
+  </a>
+</div>
+
+<p class="mt-8 text-sm">
+  <span class="text-muted">Or write to</span>{' '}
+  <a href={`mailto:${person.email}`}>{person.email}</a>
+  {
+    profiles.map((link) => (
+      <>
+        <span class="text-muted"> · </span>
+        <a href={link.href} rel="me noopener" target="_blank">
+          {link.label}
+          <span class="sr-only"> (opens in a new tab)</span>
+        </a>
+      </>
+    ))
+  }
+</p>

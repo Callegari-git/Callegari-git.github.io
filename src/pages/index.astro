@@ -6,7 +6,6 @@ import ProjectCard from '../components/ProjectCard.astro';
 import MoreProjects from '../components/MoreProjects.astro';
 import Expertise from '../components/Expertise.astro';
 import Timeline from '../components/Timeline.astro';
-import Credentials from '../components/Credentials.astro';
 import Principles from '../components/Principles.astro';
 import Contact from '../components/Contact.astro';
 import { person } from '../data/site';
@@ -39,15 +38,11 @@ const description = person.subline;
     <Timeline />
   </Section>
 
-  <Section id="credentials" index="04" label="Credentials" title="Education, numbers, stack">
-    <Credentials />
-  </Section>
-
-  <Section id="principles" index="05" label="Principles" title="How I work" width="text">
+  <Section id="principles" index="04" label="Principles" title="How I work" width="text">
     <Principles />
   </Section>
 
-  <Section id="contact" index="06" label="Contact" title="Let's talk">
+  <Section id="contact" index="05" label="Contact" title="Let's talk">
     <Contact />
   </Section>
 </BaseLayout>

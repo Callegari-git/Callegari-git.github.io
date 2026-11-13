@@ -5,13 +5,6 @@
  * Projects live in src/content/projects (Content Collections).
  */
 
-export interface Metric {
-  value: string;
-  label: string;
-  /** true when the value itself is an estimate; shows an "est." tag. */
-  estimated?: boolean;
-}
-
 export interface ProfileLink {
   label: string;
   /** A URL / mailto, or a "[CONFIRM …]" placeholder rendered as text. */
@@ -83,26 +76,4 @@ export const principles: string[] = [
   'The agent proposes, our code checks, a person approves. The agent never grades itself.',
   'A tool only one person can run is a new dependency, not a solved problem.',
   'Say what is simulated, estimated or not yet verified.',
-];
-
-/** Credentials → key numbers: only facts not shown elsewhere on the home page. */
-export const keyNumbers: Metric[] = [
-  { value: '61,000', label: 'EVSEs mined to build firmware-level reference configs' },
-  { value: '150+', label: 'tariff grids updated in 2 days of dev' },
-  { value: '1,100+', label: 'automated tests across the capstone repo (team, CI on every PR)' },
-];
-
-export interface StackGroup {
-  label: string;
-  items: string[];
-}
-
-/** Credentials → stack groups. */
-export const stackGroups: StackGroup[] = [
-  { label: 'Languages', items: ['Python', 'SQL'] },
-  { label: 'AI / agents', items: ['LLM agents & tool use', 'MCP', 'Claude (Anthropic API)', 'Claude Code'] },
-  { label: 'Backend', items: ['FastAPI', 'Pydantic', 'Temporal', 'REST APIs'] },
-  { label: 'Data', items: ['Databricks', 'PySpark', 'NumPy/SciPy'] },
-  { label: 'Infra', items: ['AWS', 'Docker', 'GitHub Actions', 'pytest'] },
-  { label: 'Hardware & CAD', items: ['CadQuery', 'PrusaSlicer', 'Marlin G-code', 'Creality CR-10 V2'] },
 ];

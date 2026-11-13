@@ -35,15 +35,15 @@ Leave:
 - Justified paragraphs (uneven word spacing) → left-aligned text
 - Long biographical paragraphs → max 3–4 lines per paragraph
 
-### 2. elliott.mangham.dev → compactness + credentials
+### 2. elliott.mangham.dev → compactness
 Take:
 - Everything essential understandable within one screen
-- Collapsible **Credentials** panel (`<details>`, zero JS): degrees, certifications, awards, publications, key numbers
 - Row of project previews (horizontal cards) linking to case studies
 - Clear CONNECT block at the end of the page + "Book a call" / email CTA
 Leave:
 - Full dark theme (we keep Ashwin's light base; dark mode is optional)
 - Any mention of pricing / project budgets (I am not an agency)
+- The Credentials panel (removed from the home page; do not re-add it)
 
 ### 3. justus-john.com → ONE signature AI animation
 Take:
@@ -73,7 +73,7 @@ Leave:
 - LLM animation: pinned for at most ~3 viewport heights, with a static labelled diagram for reduced-motion and no-JS
 
 ## Site structure
-- `/`: hero (name, role, headline, links, CV) → expertise (3 blocks) → featured projects (3) → LLM animation → experience (short timeline) → credentials (`<details>`) → principles → contact
+- `/`: hero (name, role, headline, links, CV) → featured projects (3) → expertise (3 blocks) → LLM animation → experience (short timeline) → principles → contact
 - `/projects/[slug]`: case study = problem → approach → architecture (diagram) → quantified results → stack → links (repo, demo, paper)
 - `/cv.pdf` in `public/`
 - Content in `src/content/projects/*.md` and `src/content/experience/*.md` with a Zod schema (title, date, role, stack[], metrics[], links, featured)
@@ -103,7 +103,7 @@ Leave:
 - Work **phase by phase**, and stop at the end of each one for my review:
   1. Design system (colors, type, layout) + home page with placeholder content
   2. Content Collections + project pages
-  3. Credentials panel + timeline + contact
+  3. Timeline + principles + contact
   4. LLM animation
   5. Chatbot
 - Before each phase: explain the plan in a few lines, then code

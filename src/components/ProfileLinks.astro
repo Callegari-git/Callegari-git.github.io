@@ -1,5 +1,10 @@
 ---
-/** Profile links; "[CONFIRM …]" placeholders render as plain text, never as links. */
+/**
+ * Profile links; "[CONFIRM …]" placeholders render as plain text, never as links.
+ * The email link shows the address itself (a bare "Email" label is useless when no
+ * mail app is configured) plus a Copy button.
+ */
+import CopyEmail from './CopyEmail.astro';
 import { isPlaceholder, type ProfileLink } from '../data/site';
 
 interface Props {
@@ -10,11 +15,24 @@ interface Props {
 const { links, class: className } = Astro.props;
 ---
 
-<ul class:list={['flex flex-wrap gap-x-6 gap-y-2', className]} aria-label="Profiles">
+<ul class:list={['flex flex-wrap items-center gap-x-6 gap-y-2', className]} aria-label="Profiles">
   {
     links.map((link) => {
       if (isPlaceholder(link.href)) {
         return <li class="font-mono text-label text-muted">{link.href}</li>;
+      }
+      if (link.href.startsWith('mailto:')) {
+        const [user, domain] = link.href.replace(/^mailto:/, '').split('@');
+        return (
+          <li class="flex flex-wrap items-center gap-x-3 gap-y-1">
+            {/* <wbr> lets the address break after "@" on narrow screens. */}
+            <a href={link.href} class="text-sm font-semibold">
+              {user}
+              <wbr />@{domain}
+            </a>
+            <CopyEmail email={`${user}@${domain}`} />
+          </li>
+        );
       }
       const external = link.href.startsWith('http');
       return (

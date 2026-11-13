@@ -1,4 +1,5 @@
 ---
+import CopyEmail from './CopyEmail.astro';
 import { person, links, isPlaceholder } from '../data/site';
 
 const contacts = [
@@ -41,7 +42,12 @@ const contacts = [
           <div>
             <dt class="label">{c.label}</dt>
             <dd class="mt-1 break-words">
-              {c.href ? (
+              {c.href?.startsWith('mailto:') ? (
+                <span class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <a href={c.href}>{c.text}</a>
+                  <CopyEmail email={c.text} />
+                </span>
+              ) : c.href ? (
                 <a href={c.href} {...(external ? { rel: 'me noopener', target: '_blank' } : {})}>
                   {c.text}
                   {external && <span class="sr-only"> (opens in a new tab)</span>}

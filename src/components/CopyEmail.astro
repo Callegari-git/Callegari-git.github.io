@@ -1,0 +1,79 @@
+---
+/**
+ * "Copy" button for the email address. Progressive enhancement: the button is
+ * hidden until the script confirms the Clipboard API is available, so without JS
+ * only the (selectable) address is shown. This script is the one documented
+ * exception to "zero JS outside the animation island" (see CLAUDE.md).
+ */
+interface Props {
+  email: string;
+}
+
+const { email } = Astro.props;
+---
+
+<button type="button" class="copy-email" data-copy-email={email} hidden>
+  <span data-copy-label>Copy</span><span class="sr-only"> email address</span>
+</button>
+<span class="sr-only" role="status" data-copy-status></span>
+
+<script>
+  if (navigator.clipboard) {
+    for (const button of document.querySelectorAll<HTMLButtonElement>('[data-copy-email]')) {
+      const label = button.querySelector('[data-copy-label]');
+      const status = button.nextElementSibling;
+      let timer: number | undefined;
+
+      button.hidden = false;
+      button.addEventListener('click', async () => {
+        let ok = true;
+        try {
+          await navigator.clipboard.writeText(button.dataset.copyEmail ?? '');
+        } catch {
+          ok = false;
+        }
+        if (label) label.textContent = ok ? 'Copied' : 'Failed';
+        if (status) status.textContent = ok ? 'Email address copied' : 'Could not copy. Select the address instead.';
+        clearTimeout(timer);
+        timer = window.setTimeout(() => {
+          if (label) label.textContent = 'Copy';
+          if (status) status.textContent = '';
+        }, 2000);
+      });
+    }
+  }
+</script>
+
+<style>
+  .copy-email {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Fixed width so "Copy" → "Copied" does not shift the links that follow. */
+    min-width: 4.75rem;
+    min-height: 2rem;
+    padding: 0 0.625rem;
+    border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent);
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-2);
+    background: transparent;
+    cursor: pointer;
+    transition:
+      color 150ms,
+      border-color 150ms;
+  }
+
+  .copy-email:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .copy-email[hidden] {
+    display: none;
+  }
+</style>

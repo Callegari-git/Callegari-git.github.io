@@ -51,9 +51,9 @@ export const about: string[] = [
 ];
 
 export const quote = {
-  text: 'The first principle is that you must not fool yourself, and you are the easiest person to fool.',
-  author: 'Richard Feynman',
-  source: '“Cargo Cult Science,” 1974',
+  text: 'Nothing great was ever achieved without enthusiasm.',
+  author: 'Ralph Waldo Emerson',
+  source: '“Circles,” 1841',
 } as const;
 
 export const isPlaceholder =(href: string) => href.startsWith('[CONFIRM');

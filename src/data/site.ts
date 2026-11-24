@@ -11,11 +11,6 @@ export interface ProfileLink {
   href: string;
 }
 
-export interface ExpertiseBlock {
-  title: string;
-  body: string;
-}
-
 export const person = {
   name: 'Sébastien Callegari',
   /** Used by the OG image and its alt text. */
@@ -26,7 +21,9 @@ export const person = {
   tagline: 'Engineer · ML, LLM agents & automation in production',
   location: 'San Francisco Bay Area',
   openTo: 'Full-time roles in 2027 · on-site, hybrid, remote',
+  /** No longer shown on the page; still used by scripts/og-image.mjs. */
   headline: 'An agent should never grade its own work. I build the guardrails that let AI act on real systems.',
+  /** Meta description of the home page (no longer shown in the hero). */
   subline: 'AI engineer working where agents meet production: MCP tools, hardware, and the checks around them.',
   availability: 'Open to full-time roles in 2027 (MEng ends May 2027) · on-site, hybrid, remote.',
   email: 'sebastien_callegari@berkeley.edu',
@@ -43,7 +40,20 @@ export const heroFacts = {
   },
 } as const;
 
-export const isPlaceholder = (href: string) => href.startsWith('[CONFIRM');
+/** "About" section: short paragraphs (max 3–4 lines each). Sources: cv.pdf + content brief. */
+export const about: string[] = [
+  'MEng student at UC Berkeley (Applied Science and Technology). Trained as a mechanical engineer at Arts et Métiers, then a data analytics diploma at Paris 1 Panthéon-Sorbonne. I write software that acts on real systems: EV chargers, 3D printers, production APIs.',
+  'At TotalEnergies, I turned manual operations on thousands of EV chargers into audited, resumable pipelines, and shipped a FastAPI + Temporal service on AWS that provisions a full charging site from one Excel file. In my Berkeley capstone with Celedon, I lead object design, circuit tools and printer safety for an AI design agent.',
+  'I like problems where software meets physical hardware, and checks that do not take the model’s word for it. Off the keyboard: rugby, daily cycling, hapkido.',
+];
+
+export const quote = {
+  text: 'The first principle is that you must not fool yourself — and you are the easiest person to fool.',
+  author: 'Richard Feynman',
+  source: '“Cargo Cult Science,” 1974',
+} as const;
+
+export const isPlaceholder =(href: string) => href.startsWith('[CONFIRM');
 
 /** id of the email dialog (EmailPopover.astro); Email triggers use popovertarget={EMAIL_POPOVER_ID}. */
 export const EMAIL_POPOVER_ID = 'email-popover';
@@ -56,27 +66,3 @@ export const links: ProfileLink[] = [
 
 /** Shown wherever an estimate appears (case-study pages). */
 export const estimateNote = 'est. = estimated from team-declared unit times.';
-
-export const expertise: ExpertiseBlock[] = [
-  {
-    title: 'Agentic systems with guardrails',
-    body: 'MCP servers that expose campaign-level tools, never raw hardware; frozen specs, human approval before any build, independent verification from raw files.',
-  },
-  {
-    title: 'Production automation at scale',
-    body: 'API pipelines with pre-checks, staged rollout, per-object audit logs and selective replay; from scripts to services (FastAPI).',
-  },
-  {
-    title: 'Data engineering for operations',
-    body: 'Databricks / PySpark on fleet data: latest-snapshot joins, normalization, reconciliation across sources.',
-  },
-];
-
-/** "How I work" — 5 principles from the brief. */
-export const principles: string[] = [
-  'Understand the process before automating it; run on a sample before the full scope.',
-  'Every action leaves a trace; a failed run resumes without replaying what succeeded.',
-  'The agent proposes, our code checks, a person approves. The agent never grades itself.',
-  'A tool only one person can run is a new dependency, not a solved problem.',
-  'Say what is simulated, estimated or not yet verified.',
-];

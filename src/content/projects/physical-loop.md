@@ -65,14 +65,7 @@ frozen.
 
 ## Architecture
 
-```text
-Agent ⇄ MCP (campaign tools only) ⇄ services / executor ⇄ backend (simulated RC bench or printer)
-                                                              │
-                                                              ▼
-                              traces → fit → frozen candidate → independent verifier
-
-Rule: MCP never talks to the bench; the hardware layer never talks to the agent.
-```
+![Architecture: the AI agent talks to an MCP server that exposes campaign tools only, which calls services and an executor; on the hardware side, safety gates (signed single-use approval, limits, G-code pre-flight) sit in front of the backend, a simulated RC bench or a real CR-10 V2 printer. Raw traces feed a model fit, the candidate is frozen by SHA-256, and an independent verifier rescores it from raw files against validation data hidden until the freeze. Rule: MCP never talks to the bench; the hardware layer never talks to the agent.](../../assets/diagrams/physical-loop.svg)
 
 ## Results
 

@@ -55,7 +55,7 @@
 
   /* ---- Layout widths */
   --container-text: 45rem; /* 720px text column */
-  --container-grid: 68.75rem; /* 1100px project grids */
+  --container-grid: 48rem; /* 768px centered column (single-column cards) */
 
   /* ---- Motion: durations use duration-150 / duration-200 / duration-300. */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -130,6 +130,12 @@
   /* Small uppercase monospace label (ROLE, EXPERTISE…). */
   .label {
     @apply font-mono text-label font-medium text-muted uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  /* Outlined mono tag (stack items on cards and case studies). */
+  .tag {
+    @apply rounded-[2px] border border-ink/20 px-2 py-0.5 font-mono text-label text-ink;
   }
 
   /* Page gutters: 20px (mobile) → 32px (tablet) → 64px (desktop). */
@@ -188,6 +194,16 @@
   .case-body pre::before {
     @apply absolute top-3 left-5 font-mono text-label font-medium text-muted uppercase;
     content: "Diagram placeholder";
+  }
+
+  /* Architecture diagrams (draw.io → SVG, src/assets/diagrams). Full column width, scales down on mobile. */
+  .case-body img {
+    @apply h-auto w-full min-w-[40rem];
+  }
+
+  /* Below 640px the diagram keeps a readable size and scrolls inside its own box (no page scroll). */
+  .case-body p:has(> img) {
+    @apply my-6 overflow-x-auto;
   }
 
   .case-section {

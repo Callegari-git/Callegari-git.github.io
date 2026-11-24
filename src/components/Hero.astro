@@ -1,6 +1,7 @@
 ---
-import ProfileLinks from './ProfileLinks.astro';
-import { person, links, heroFacts } from '../data/site';
+import CvLinks from './CvLinks.astro';
+import About from './About.astro';
+import { person, heroFacts } from '../data/site';
 
 const sep = ' · ';
 ---
@@ -9,10 +10,13 @@ const sep = ' · ';
   <div class="mx-auto max-w-grid pt-12 pb-12 md:pt-16 md:pb-16">
     <p class="label mb-4">{person.kicker}</p>
     <h1 id="hero-title" class="text-h1">{person.name}</h1>
-    <p class="mt-3 text-lead text-muted">{person.tagline}</p>
+    <p class="mt-3 font-mono text-base text-muted">{person.tagline}</p>
+
+    {/* CV + links stay above the fold, before the facts and the About block. */}
+    <CvLinks class="mt-6" />
 
     {/* Label/value list: 2 columns from 640px, label above value below. */}
-    <dl class="mt-8 grid max-w-text grid-cols-1 gap-y-4 sm:grid-cols-[7rem_1fr] sm:gap-x-6 sm:gap-y-3">
+    <dl class="mt-8 grid max-w-text grid-cols-1 font-mono text-sm gap-y-4 sm:grid-cols-[7rem_1fr] sm:gap-x-6 sm:gap-y-3">
       <div class="sm:contents">
         <dt class="hero-dt">Schools</dt>
         <dd class="text-ink">
@@ -44,16 +48,9 @@ const sep = ' · ';
       </div>
     </dl>
 
-    <p class="mt-8 max-w-text font-display text-h2 text-ink">{person.headline}</p>
-    <p class="mt-4 max-w-text text-lead">{person.subline}</p>
-
-    <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-      <a href={person.cvHref} class="btn btn-primary" target="_blank" rel="noopener">
-        View CV
-        <span aria-hidden="true">↗</span>
-        <span class="sr-only">(opens in a new tab)</span>
-      </a>
-      <ProfileLinks links={links} />
+    <div class="mt-12 max-w-text">
+      <h2 class="hero-dt"><span class="mr-2 text-accent" aria-hidden="true">&gt;</span>About</h2>
+      <About />
     </div>
   </div>
 </section>

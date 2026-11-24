@@ -1,11 +1,10 @@
 ---
 import { person } from '../data/site';
 
-// Order mirrors the page. "Expertise" is hidden below 640px so the bar fits on one line at 375px.
+// Order mirrors the page.
 const nav = [
-  { label: 'Work', href: '/#work' },
-  { label: 'Expertise', href: '/#expertise', hideOnMobile: true },
   { label: 'Experience', href: '/#experience' },
+  { label: 'Work', href: '/#work' },
   { label: 'Contact', href: '/#contact' },
 ];
 ---
@@ -19,7 +18,7 @@ const nav = [
       <ul class="flex gap-3 text-sm sm:gap-6">
         {
           nav.map((item) => (
-            <li class:list={[item.hideOnMobile && 'hidden sm:block']}>
+            <li>
               <a href={item.href} class="text-ink-2 no-underline hover:text-accent">
                 {item.label}
               </a>

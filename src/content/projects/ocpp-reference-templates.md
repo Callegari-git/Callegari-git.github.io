@@ -36,11 +36,7 @@ metrics:
 
 ## Architecture
 
-```text
-fleet config snapshots → latest-snapshot join (model + firmware) → normalize values
-                       → exclude serial-like / sparse params (audit reason each)
-                       → frequency-based selection → COMMON / MAJORITY / FREQUENT / OPTIONAL
-```
+![Architecture on Databricks / PySpark: fleet config snapshots (87,374 EVSEs), scoped to ~61,000 in-service EVSEs and joined on the latest snapshot to model and firmware; values normalized; serial-like or sparse parameters excluded with an audit reason for each; frequency-based selection into 4 tiers (COMMON, MAJORITY, FREQUENT, OPTIONAL); output: one reference template per charger model and firmware.](../../assets/diagrams/ocpp-reference-templates.svg)
 
 ## Results
 

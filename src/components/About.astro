@@ -1,0 +1,14 @@
+---
+import { about, quote } from '../data/site';
+---
+
+<div class="mt-4 space-y-4">
+  {about.map((paragraph) => <p class="text-ink-2">{paragraph}</p>)}
+</div>
+
+<figure class="mt-8 border-l-2 border-muted/40 pl-5">
+  <blockquote>
+    <p class="font-display text-lead text-ink">“{quote.text}”</p>
+  </blockquote>
+  <figcaption class="label mt-3">{quote.author}, {quote.source}</figcaption>
+</figure>

@@ -39,12 +39,7 @@ one. One mistake left half-built objects in the platform.
 One Excel file describes the whole site. The service validates it, then a **Temporal** workflow runs the dependent
 API calls in order (retries and step state handled by Temporal) until the site is live in production.
 
-```text
-Excel file (whole site) → Pydantic validation (whole payload) → Temporal workflow
-                        → dependency-ordered API calls (locations, stations, charge points, roaming partners)
-                        → response check after each step, retries and step state in Temporal
-                        → site live in production · or stop at the failing step with a clear error
-```
+![Architecture: one Excel file describing the whole site goes to Scriptus, a FastAPI service on AWS in Docker that validates the whole payload with Pydantic. A Temporal workflow then creates locations, stations, charge points and roaming partners in order through the platform production API, checking the response after each step. The site goes live when all steps pass; otherwise the run stops at the failing step with a clear error.](../../assets/diagrams/scriptus.svg)
 
 Deployment: Docker container on AWS, connected to Temporal and to the platform's production API.
 

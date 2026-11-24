@@ -34,6 +34,9 @@ Team projects only.
 
 ## Architecture
 
+<!-- Replace this text flow with a draw.io diagram: create src/assets/diagrams/<slug>.drawio,
+run `npm run diagrams`, then use ![Full flow described in words](../../assets/diagrams/<slug>.svg). -->
+
 ```text
 input → step → step → output
 ```

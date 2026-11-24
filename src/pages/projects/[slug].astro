@@ -113,7 +113,7 @@ const hasEstimate = metrics.some((m) => m.estimated || /\best\./.test(m.label));
             <h2 id="stack-title">Stack</h2>
             <ul class="flex max-w-text flex-wrap gap-2">
               {stack.map((tech) => (
-                <li class="rounded-[3px] bg-accent-tint px-2 py-1 font-mono text-label text-ink-2">{tech}</li>
+                <li class="tag">{tech}</li>
               ))}
             </ul>
           </section>

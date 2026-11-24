@@ -49,10 +49,7 @@ A 10-step protocol for every automation:
 
 ## Architecture
 
-```text
-manual process → actions / human decisions / checks → pre-checks → sample run → user validation
-              → staged rollout → per-object audit log → selective replay of failures
-```
+![Architecture: prepare (manual process, decomposed into actions, human decisions and checks, pre-checks before every action, sample run), then roll out (user validation, staged rollout in batches, per-object audit log, selective replay of failed objects only, resuming without replaying what succeeded).](../../assets/diagrams/ev-network-automation.svg)
 
 ## Results
 

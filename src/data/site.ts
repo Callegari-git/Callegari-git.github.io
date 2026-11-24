@@ -13,7 +13,10 @@ export interface ProfileLink {
 
 export const person = {
   name: 'Sébastien Callegari',
-  /** Used by the OG image and its alt text. */
+  /** Alt text of public/og.png: describes what the image shows. Update it when the image changes. */
+  ogImageAlt:
+    'Sébastien Callegari, French engineer. Schools: UC Berkeley, Arts et Métiers, Panthéon-Sorbonne. Focus: LLM agents, MCP, automation, hardware.',
+  /** Used by scripts/og-image.mjs. */
   roleLine: 'Software / AI Engineer · LLM agents, MCP & tool use',
   /** Hero kicker (mono label above the name). */
   kicker: 'Software / AI Engineer · San Francisco Bay Area · Open to full-time roles in 2027',

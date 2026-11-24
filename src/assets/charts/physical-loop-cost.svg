@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="120" viewBox="0 0 720 120">
+<style>
+  text { font-family: Helvetica, Arial, sans-serif; font-size: 12px; fill: #4a5262; }
+  .mono { font-family: Menlo, Consolas, 'Courier New', monospace; font-size: 10px; letter-spacing: 0.08em; fill: #636b7a; }
+  .b { font-weight: bold; fill: #1e2430; }
+  .s { font-size: 11px; fill: #636b7a; }
+  .a { fill: #1c3f8f; font-weight: bold; }
+</style>
+<defs>
+  <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="6" height="6" fill="#fbf9f4"/>
+    <line x1="0" y1="0" x2="0" y2="6" stroke="#636b7a" stroke-width="1.5" opacity="0.55"/>
+  </pattern>
+</defs>
+<text x="0" y="12" class="mono">MODEL COST · LIVE DESK-LAMP RUN</text><rect x="0" y="40" width="700" height="26" fill="#fbf9f4" stroke="#636b7a" stroke-width="0.75"/><rect x="0" y="40" width="121" height="26" fill="#1c3f8f"/><text x="129" y="57" class="a">$6.05 spent (11.5 min)</text><text x="692" y="57" class="b" text-anchor="end">$35 run cap</text><line x1="0" y1="66" x2="0" y2="70" stroke="#4a5262"/><text x="0" y="84" class="s">$0</text><line x1="200" y1="66" x2="200" y2="70" stroke="#4a5262"/><text x="200" y="84" class="s" text-anchor="middle">$10</text><line x1="400" y1="66" x2="400" y2="70" stroke="#4a5262"/><text x="400" y="84" class="s" text-anchor="middle">$20</text><line x1="600" y1="66" x2="600" y2="70" stroke="#4a5262"/><text x="600" y="84" class="s" text-anchor="middle">$30</text><line x1="700" y1="66" x2="700" y2="70" stroke="#4a5262"/><text x="700" y="84" class="s" text-anchor="end">$35</text><text x="0" y="110" class="s">Per-stage caps: $1 / $3 / $10 / $20. 17% of the run cap used.</text>
+</svg>

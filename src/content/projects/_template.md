@@ -1,9 +1,9 @@
 ---
-# Authoring guide — this file is ignored by the collection (filename starts with "_").
+# Authoring guide: this file is ignored by the collection (filename starts with "_").
 # To add a project: copy this file to <slug>.md, fill it in, done.
 title: Project title
 slug: project-slug # must match the filename
-summary: One or two sentences — the problem and what shipped.
+summary: One or two sentences: the problem and what shipped.
 category: Short category · Optional second part
 date: 2026-01-01 # start
 end: 2026-06-30 # omit for "present"

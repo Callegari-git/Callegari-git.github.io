@@ -1,7 +1,7 @@
 ---
 title: 'Physical Loop: agentic physical engineering'
 slug: physical-loop
-summary: An AI design agent that goes from a text request to a printable object with a circuit inside — and a safety and verification layer that keeps it from touching hardware unchecked.
+summary: An AI design agent that goes from a text request to a printable object with a circuit inside, plus a safety and verification layer that keeps it from touching hardware unchecked.
 category: Agentic AI · Hardware-in-the-loop
 date: 2026-09-01
 role: AI Engineer, UC Berkeley MEng industry capstone with Celedon (DaVinci platform)
@@ -23,7 +23,7 @@ stack:
   - Claude Code
 metrics:
   - value: '11.5 min'
-    label: text request to a checked, printable object with a circuit inside — $6.05 of model cost
+    label: text request to a checked, printable object with a circuit inside, for $6.05 of model cost
   - value: '4'
     label: agent tool calls refused by the guardrails during the live desk-lamp run
   - value: '~13 min'
@@ -60,7 +60,7 @@ frozen.
   ordered by part.
 - **Printer safety:** simulated safety gates (signed single-use approvals bound to the exact file, limits, G-code
   pre-flight, hash-chained audit log, separate heater watchdog), then a **supervised Marlin mode on a real Creality
-  CR-10 V2** (port lock, dead-man timer with host keepalive — kill proven at 299.9 s).
+  CR-10 V2** (port lock, dead-man timer with host keepalive; kill measured at 299.9 s).
 - Slicer pipeline (pinned PrusaSlicer profile), blind model/slice reviewers, push-to-talk voice front end.
 
 ## Architecture
@@ -80,6 +80,10 @@ frozen.
   intact.
 - Agent-written CadQuery code runs in a sandboxed process with static checks and timeouts; specs frozen by SHA-256.
 - 1,100+ automated tests across the repo (team), CI on every pull request.
+
+![Step response on the simulated RC bench: the initial model (time constant 0.5 s) rises too fast; the fitted model (1.0006 s) runs through the bench points (1.0 s). Validation NRMSE is 0.0067 and 0.0041, both under the 0.02 pass threshold.](../../assets/charts/physical-loop-calibration.svg)
+
+![Model cost of the live desk-lamp run: $6.05 spent in 11.5 minutes against a $35 run cap, 17% of the cap. Per-stage caps: $1, $3, $10, $20.](../../assets/charts/physical-loop-cost.svg)
 
 ## Limits
 

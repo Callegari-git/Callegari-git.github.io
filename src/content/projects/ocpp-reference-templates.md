@@ -24,7 +24,7 @@ metrics:
 
 ## Problem
 
-87,374 EVSEs, 13,768 distinct parameters, 177,826 distinct values, ~175 charger models — and no trustworthy
+87,374 EVSEs, 13,768 distinct parameters, 177,826 distinct values, ~175 charger models, and no trustworthy
 "expected configuration" to compare a device against.
 
 ## Approach

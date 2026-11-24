@@ -55,6 +55,8 @@ A 10-step protocol for every automation:
 
 Volumes are measured. Time savings marked "est." are estimated from team-declared unit times.
 
+![Bar chart, time by hand (estimated) vs with automation. HPC network campaign: about 4 months by hand vs under 1 month automated. Joint-venture migration: about 4 months of manual work vs 2 weeks to build the scripts.](../../assets/charts/ev-automation-time.svg)
+
 - HPC network campaign: **15,000+ config changes**, ~4,000 EVSEs / 1,000+ chargers, done in **< 1 month vs ~4
   months** (est.).
 - Joint-venture migration: **~10,000 chargers, 5 operators**, scripts in **2 weeks**, ~4 months of manual work

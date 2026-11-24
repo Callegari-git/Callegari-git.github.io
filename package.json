@@ -12,6 +12,7 @@
     "astro": "astro",
     "og": "node scripts/og-image.mjs",
     "icons": "node scripts/apple-touch-icon.mjs",
+    "charts": "node scripts/charts.mjs",
     "diagrams": "for f in src/assets/diagrams/*.drawio; do drawio -x -f svg --theme light --border 8 -o \"${f%.drawio}.svg\" \"$f\"; done"
   },
   "dependencies": {

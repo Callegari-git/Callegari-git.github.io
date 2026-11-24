@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="246" viewBox="0 0 720 246">
+<style>
+  text { font-family: Helvetica, Arial, sans-serif; font-size: 12px; fill: #4a5262; }
+  .mono { font-family: Menlo, Consolas, 'Courier New', monospace; font-size: 10px; letter-spacing: 0.08em; fill: #636b7a; }
+  .b { font-weight: bold; fill: #1e2430; }
+  .s { font-size: 11px; fill: #636b7a; }
+  .a { fill: #1c3f8f; font-weight: bold; }
+</style>
+<defs>
+  <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="6" height="6" fill="#fbf9f4"/>
+    <line x1="0" y1="0" x2="0" y2="6" stroke="#636b7a" stroke-width="1.5" opacity="0.55"/>
+  </pattern>
+</defs>
+<rect x="230" y="8" width="14" height="10" fill="url(#hatch)" stroke="#636b7a" stroke-width="0.75"/><text x="250" y="17" class="s">By hand (est.)</text><rect x="360" y="8" width="14" height="10" fill="#1c3f8f"/><text x="380" y="17" class="s">With automation</text><line x1="230" y1="34" x2="230" y2="222" stroke="#4a5262"/><text x="230" y="238" class="s" text-anchor="middle">0</text><line x1="345" y1="34" x2="345" y2="222" stroke="#d9d4c8" stroke-dasharray="3 3"/><text x="345" y="238" class="s" text-anchor="middle">1 mo</text><line x1="460" y1="34" x2="460" y2="222" stroke="#d9d4c8" stroke-dasharray="3 3"/><text x="460" y="238" class="s" text-anchor="middle">2 mo</text><line x1="575" y1="34" x2="575" y2="222" stroke="#d9d4c8" stroke-dasharray="3 3"/><text x="575" y="238" class="s" text-anchor="middle">3 mo</text><line x1="690" y1="34" x2="690" y2="222" stroke="#d9d4c8" stroke-dasharray="3 3"/><text x="690" y="238" class="s" text-anchor="middle">4 mo</text><text x="0" y="66" class="b">HPC network campaign</text><text x="0" y="82" class="s">15,000+ config changes</text><rect x="230" y="48" width="460" height="22" fill="url(#hatch)" stroke="#636b7a" stroke-width="0.75"/><text x="682" y="63" class="b" text-anchor="end">~4 months</text><rect x="230" y="76" width="115" height="22" fill="#1c3f8f"/><text x="353" y="91" class="a">&lt; 1 month</text><text x="0" y="158" class="b">Joint-venture migration</text><text x="0" y="174" class="s">~10,000 chargers, 5 operators</text><rect x="230" y="140" width="460" height="22" fill="url(#hatch)" stroke="#636b7a" stroke-width="0.75"/><text x="682" y="155" class="b" text-anchor="end">~4 months</text><rect x="230" y="168" width="57.5" height="22" fill="#1c3f8f"/><text x="295.5" y="183" class="a">2 weeks to build the scripts</text>
+</svg>

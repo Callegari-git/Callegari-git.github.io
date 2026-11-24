@@ -48,7 +48,7 @@ export const about: string[] = [
 ];
 
 export const quote = {
-  text: 'The first principle is that you must not fool yourself — and you are the easiest person to fool.',
+  text: 'The first principle is that you must not fool yourself, and you are the easiest person to fool.',
   author: 'Richard Feynman',
   source: '“Cargo Cult Science,” 1974',
 } as const;

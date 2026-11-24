@@ -19,7 +19,7 @@ stack:
   - REST APIs
 metrics:
   - value: 'Hundreds'
-    label: charging sites provisioned in production, each from one Excel file in minutes — vs several months by hand (est.)
+    label: charging sites provisioned in production, each from one Excel file in minutes, vs several months by hand (est.)
 ---
 
 ## Problem

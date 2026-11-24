@@ -18,7 +18,7 @@ const { title, description, type = 'website' } = Astro.props;
 const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const canonical = new URL(pathname, Astro.site);
 const ogImage = new URL('/og.png', Astro.site);
-const ogImageAlt = `${person.name} — ${person.roleLine}`;
+const ogImageAlt = `${person.name} · ${person.roleLine}`;
 ---
 
 <!doctype html>
